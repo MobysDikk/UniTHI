@@ -1,0 +1,46 @@
+Java: Strings
+
+
+Zeichenkette = Reihung von Einzelzeichen(=char)
+Im Gegehnsatz ui C.
+-"interne" Realisierung (" im String") nicht zugänglich
+- Annahme von '/0' am Ende ist (wohl) falsch
+- Annahme von "1 Zeichen =1 Byte" ist falsch
+Strings sind Objekte der (Standart-) Klasse String, deren Spseicherbelegung automatisch verwaltet wird ( insbesondere : Länge!)
+Anlage von String-Objekten efolgt mit Konstruktoren oder über Stringliterale. 
+
+- String s = New String("Hallo");
+- String s = "Hallo";             // indetnische mit ersten//
+
+Die wichtigsre Methode der Klasse string sind:
+charAt() substring() length() equals() compareTo() indexOf()
+
+Dazu gibt es auch noch den Verkettungsoperator '+' (vgl. strcat() in C)
+
+Genauere erklärung:
+
+// char charAt(int i) = Gibt an welcher buchstabe and der stelle/index i(bsp. 5) ist.
+   Beispiel: String s ="Hallo";
+          was liefert s.charAt(5)?
+   Syntax: 
+         char Nummer5=s.charAt(5);
+
+
+// String substring (int start, int ende)= Liefert Teilstringvon Positions start (inkl.) bis Position ende (exklusiv)
+   Beispiel: s.substring(1,4); => "all"
+             s.substring(1,2); => "a"  != 'a'
+             was liefert s.substring(3,3)? oder (-3,3) oder (3,9) ---->HA!
+
+    Syntax:
+           
+
+int -length() = liefert die Länge des Strings
+Beispiel: s.lenth();
+
+boolean equals(String s2) = vergleicht den inhalt(die Zeichenfolge) des aktuellen(angesprochenen) Strings mit
+dem Inhalt des Parameters-Strinfs s2
+Beispiel: if(s.equals("HALLO"))...
+
+
+
+    
