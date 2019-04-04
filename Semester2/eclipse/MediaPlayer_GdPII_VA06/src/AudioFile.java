@@ -3,8 +3,7 @@ public class AudioFile
 {
 
 //Bereich1 Atribute
-String pathNameLinux;
-String fileNameWidnows;
+	
 	
 //Konstruktor
 	
@@ -19,7 +18,6 @@ public AudioFile()
 public void parsePathname (String string)
 {
 
-// Windows und Linux Slashes
 		 
   
 		
