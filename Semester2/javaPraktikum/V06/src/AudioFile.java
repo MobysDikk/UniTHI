@@ -1,6 +1,13 @@
 public class AudioFile {
 
-    // For unit testing
+	// Atribute
+	private String pathname;
+	private String filename;
+	private String author;
+	private String titel; 
+   
+	
+	// For unit testing
     public AudioFile() {
 
     }
@@ -11,8 +18,10 @@ public class AudioFile {
     }
 
     // Setters or alike
-    public void parsePathname(String pfadMitDateiname) {
-
+    public void parsePathname(String path) {
+      
+    	
+ 
     }
 
     public void parseFilename(String filename) {
@@ -20,20 +29,38 @@ public class AudioFile {
     }
 
     // Getters
+    public String slashAndDrive(String path) {     // mehrfache slashes entfernen; Laufwerksbuchstabe anpassen;
+    	
+    	
+    	
+    return	null;
+    }
+    
+    
+    
+    
     public String getPathname() {
+    	
+    	
         return null;
     }
 
     public String getFilename() {
-        return null;
+        
+    	
+    	return null;
     }
 
     public String getAuthor() {
-        return null;
+        
+    	
+    	return null;
     }
 
     public String getTitle() {
-        return null;
+        
+    	
+    	return null;
 
     }
 }

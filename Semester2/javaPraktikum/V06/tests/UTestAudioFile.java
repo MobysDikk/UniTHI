@@ -1,24 +1,18 @@
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
-
-import jdk.nashorn.internal.ir.annotations.Ignore;
 
 class UTestAudioFile {
 
-   @Ignore @Test // wen man den test nicht mehr will Ignore davor
-    void test() {
-        fail("Not yet implemented");
+    @Test
+    public void test_parsePathname_03() throws Exception {
+        AudioFile af = new AudioFile();
+        af.parsePathname("/my-tmp/file.mp3");
+        char sepchar = java.io.File.separatorChar;
+        
+        assertEquals("Pathname stored incorrectly,",
+                sepchar + "my-tmp" + sepchar+ "file.mp3",
+                af.getPathname());
+        
     }
-   
-   @Test
-   public void test_parsePathname_00() throws Exception {
-       AudioFile af = new AudioFile();
-
-       af.parsePathname("/mein/pfad/lied1.mp3");
-       assertEquals("Pathname stored incorrectly",
-               "/mein/pfad/lied1.mp3", af.getPathname());
-   }
-
 
 }
