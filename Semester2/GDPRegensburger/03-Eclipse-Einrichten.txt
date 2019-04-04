@@ -1,0 +1,40 @@
+#-------------------------------------------
+# Eclipse (Oxygen) in der VM einrichten
+#-------------------------------------------
+
+# Eclipse via Desktop-Icon starten
+
+# 1) Fenster einrichten: Perspective und View
+
+
+- Window / Prespective / Open Perspective (other...) / Java
+  * wähle 'Java'
+
+    Open
+
+- Alle Fenster weg-klicken
+
+  Dann
+
+  Window / Show View / Package-Explorer
+
+# 2) Java-Einstellungen
+
+- Window / Preferences
+
+  > Java / Build Path
+	Output folder: classes
+
+  > Java / Code Style / Formatter 
+
+    Neue Formatter anlegen
+
+    New 'THI'
+
+    Tab Policy: Spaces only
+    Indentation size: 4
+    Tab Size: 4
+
+    OK
+
+

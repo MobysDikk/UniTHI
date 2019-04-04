@@ -1,8 +1,12 @@
 public class AudioFile
 {
+ 
+
+
+
   public static void main (String[] args) // parsePathname
   {
-    String pathName ="file.mp3 ";
+    String pathName ="////////d:\\\\\\\\file.mp3 ";
 
     // Slashes sortieren und Laufwerk/////////////////////////////////////////////////////////////////////////////
 
@@ -42,9 +46,33 @@ public class AudioFile
       sLi = sLi.replaceAll("//","/");
     }
     System.out.println(sLi);
+    System.out.println("");
 
+    getFilename(sWin, sLi);
 
 
   }
+
+  // getFilename /////////////////////////////////////////////////////////////////////////////////////////////////
+  public static void getFilename(String sWin, String sLi)
+  {
+    if(sWin.indexOf("\\\\") >=0)
+    {
+      String winFile = sWin.substring(sWin.lastIndexOf("\\\\"));
+      System.out.println(winFile);
+      System.out.println(sWin.lastIndexOf("\\\\"));
+    }
+    if(sLi.indexOf("/") >=0)
+    {
+      String liFile = sLi.substring(sLi.lastIndexOf("/"));
+      System.out.println(liFile);
+      System.out.println(sLi.lastIndexOf("/"));
+    }
+    else
+    { System.out.println(sWin);
+      System.out.println(sLi);
+    }
+  }
+
 
 }

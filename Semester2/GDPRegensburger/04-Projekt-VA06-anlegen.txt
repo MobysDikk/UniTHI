@@ -1,0 +1,155 @@
+#
+# Wir legen das Projekt VA06 neu an
+#
+
+mkdir -p ~/Student1/GdP2/Praktikum/VA06
+
+cd ~/Student1/GdP2/Praktikum/VA06
+
+#---------
+# Moodle-Download für VA06
+# Wir laden eine Zip-Datei mit dem ganzen Verzeichnis VA06
+#
+# Resultat: ~/Downloads/VA06-20190402.zip
+
+# Auspacken
+
+cd ~/Student1/GdP2/Praktikum/VA06
+
+unzip ~/Downloads/VA06-20190402.zip
+
+ls
+> Ausgabe
+build.zip  PathnameEBNF.pdf                 Syntaxbeschreibung_mit_EBNF_nach_ISO.pdf
+cert.zip   s026153_ISO_IEC_14977_1996E.pdf  Vorfuehraufgabe06.pdf
+
+# Weiter auspacken
+
+unzip build.zip
+
+unzip cert.zip
+
+# cleanup
+
+rm -f build.zip cert.zip
+
+# .hgignore anpassen
+# Dateien s026153_ISO_IEC_14977_1996E.pdf, Syntaxbeschreibung_mit_EBNF_nach_ISO.pdf
+# ignorieren
+
+vi ~/Student1/GdP2/.hgignore
+
+# add stanza
+
+# Ignore special files
+s026153_ISO_IEC_14977_1996E.pdf
+Syntaxbeschreibung_mit_EBNF_nach_ISO.pdf
+
+# Check hg
+
+hg st .
+
+>
+? PathnameEBNF.pdf
+? Vorfuehraufgabe06.pdf
+? build.xml
+? cert/AttributesTest.java
+? cert/AudioFileTest.java
+? cert/EmulateOtherOs.java
+? default.props
+? user.props
+
+
+# add to hg
+
+hg add
+hg comm -m "initial VA06"
+
+# Verzeichnisse für Code anlegen
+
+mkdir -p src tests
+
+tree
+
+.
+├── build.xml
+├── cert
+│   ├── AttributesTest.java
+│   ├── AudioFileTest.java
+│   └── EmulateOtherOs.java
+├── default.props
+├── PathnameEBNF.pdf
+├── s026153_ISO_IEC_14977_1996E.pdf
+├── src
+├── Syntaxbeschreibung_mit_EBNF_nach_ISO.pdf
+├── tests
+├── user.props
+└── Vorfuehraufgabe06.pdf
+
+#-------------------------------------
+# Eclipse starten
+
+# Im Package-Explorer Rechtsklick auf leerem Hintergrund.
+
+New / Java Project
+
+# Ein Fenster 'Create a Java Project' geht auf.
+
+Wichtig:
+Option 'Use default location' deaktivieren.
+Dadurch wird der Button 'Browse' aktiviert und kann benutzt werden.
+
+Button 'Browse': 
+   * zum Pfad '~/Student1/GdP2/Praktikum/VA06' navigieren.
+   * OK
+
+Dadurch werden die Felder 'Project name' und 'Location' ausgefüllt.
+
+Mit 'Next' auf die nächste Seite
+
+# Ein Fenster 'Java Settings' geht auf.
+
+Reiter Source:
+
+- auf Verzeichnis 'src' klicken
+  Unten: add folder 'src' to Build path
+
+- auf Verzeichnis 'tests' klicken
+  Unten: add folder 'tests' to Build path
+
+Reiter Libraries:
+
+- Button 'Add Library'
+  Fenster 'Add Library' öffnet sich
+
+  * Button 'Junit'
+    Next:
+    Fenster 'Junit Library' geht auf
+    JUnit library version: Junit 4 (ist bereits ausgewählt)
+    Finish
+
+
+- Button 'Add Library'
+  Fenster 'Add Library' öffnet sich
+
+  * Button 'Junit'
+    Next:
+    Fenster 'Junit Library' geht auf
+    JUnit library version: Junit 3 (auswählen)
+    Finish
+
+Mit Finish Fenster 'Java Settings' verlassen.
+
+#--------------------------
+
+Das Eclipse-Projekt 'VA06' ist nun fertig konfiguriert.
+
+#--------------------------
+
+Da wir noch keine Code-Klassen geschrieben haben,
+meldet Eclispe für das Verzeichnis VA06/cert Fehler.
+
+Das ist ganz normal und verschwindet, sobald wir die Klasse
+AudioFile.java mit ihren entsprechendne Methoden geschrieben haben.
+
+

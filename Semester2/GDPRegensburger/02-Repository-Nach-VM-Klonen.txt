@@ -1,0 +1,45 @@
+#
+# Wir klonen das Repo https://student1@bitbucket.org/student1/gdp2
+# nach ~/Student1/GdP2
+
+
+mkdir -p ~/Student1
+cd ~/Student1
+
+hg clone https://student1@bitbucket.org/student1/gdp2 GdP2
+
+#--------------
+# .hgignore erzeugen
+
+cd ~/Student1/GdP2
+
+cat > .hgignore <<'EOF'
+syntax:glob
+# Ignore PDF files in subdirectory
+PDF/**
+
+# Ignore Directory audiofiles
+Praktikum/audiofiles
+
+# Ignore log files
+*.log
+
+# ignore derived files from java and ant
+utest.report/**
+cert.report/**
+classes/**
+dist/**
+
+# Ignore backups of jEdit editor pane
+**/*~
+
+# Ignore editor swap files
+*.swp
+
+
+EOF
+
+hg add .hgignore
+hg comm -m "added .hgignore"
+
+

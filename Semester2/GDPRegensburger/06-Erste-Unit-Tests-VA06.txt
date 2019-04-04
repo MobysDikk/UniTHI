@@ -1,0 +1,114 @@
+# Wir erzeugen eine leere Testklasse
+# passend zur Klasse AudioFile.java
+#
+# Name: UTestAudioFile.java
+#
+# Generelle Coding-Conventions für MediaPlayer
+#
+# * Für jede Klasse im Produktic-Code eine TestKlasse
+# * Prefix der Testklasse: UTest
+# * Testklassen werden im Verzeichnis 'tests' abgelegt.
+#
+
+# Package-Explorer: Rechtsklick auf Verzeichnis 'tests'
+
+  New / Junit Test Case
+
+  Name der Klasse: UTestAudioFile
+
+  Finish
+
+#---
+# Den Default-Test test() deaktivieren
+
+# Zusätzliche Annotation @Ignore einfügen
+# Eclipse hilft beim Import
+#   import org.junit.Test;
+
+    @Ignore @Test
+    public void test() {
+        fail("Not yet implemented");
+    }
+
+# Ein erster Test
+
+    @Test
+    public void test_parsePathname_00() throws Exception {
+        AudioFile af = new AudioFile();
+
+        af.parsePathname("/mein/pfad/lied1.mp3");
+
+        assertEquals("Pathname stored incorrectly",
+                "/mein/pfad/lied1.mp3", af.getPathname());
+    }
+
+# Test ausführen
+# Linksklick auf Kopfzeile des Tests 'void test_parsePathname_00()'
+# Dann oben auf den Playbutton (weiß auf grün)
+
+=> Der Test schlägt (natürlich) fehl
+
+java.lang.AssertionError:
+     Pathname stored incorrectly expected:</mein/pfad/lied1.mp3> but was:<null>
+
+#
+# Das Fenster für die Ausgabe der Unit-Tests in Eclipse
+# positionieren.
+#
+# Eventuell sogar abkoppeln vom Hauptfenster
+# 
+
+Und nun ...
+
+Schreiben wir solange Code, bis der Test test_parsePathname_00 durchgeht.
+
+Und dann schreiben wir den nächsten Test.
+
+u.s.w.
+
+Den obigen Test ausbauen zu
+
+    @Test
+    public void test_parsePathname_00() throws Exception {
+        AudioFile af = new AudioFile();
+
+        af.parsePathname("/mein/pfad/lied1.mp3");
+        assertEquals("Pathname stored incorrectly",
+                "/mein/pfad/lied1.mp3", af.getPathname());
+
+        af.parsePathname("/mein/      pfad/lied2.mp3");
+        assertEquals("Pathname stored incorrectly",
+                "/mein/      pfad/lied2.mp3", af.getPathname());
+
+        af.parsePathname("/mein/////pfad/lied3.mp3");
+        assertEquals("Pathname stored incorrectly",
+                "/mein/pfad/lied3.mp3", af.getPathname());
+
+        af.parsePathname("/mein/\\pfad\\\\lied4.mp3");
+        assertEquals("Pathname stored incorrectly",
+                "/mein/pfad/lied4.mp3", af.getPathname());
+    }
+
+    @Test
+    public void test_normalizeSlashes_00() throws Exception {
+        AudioFile af = new AudioFile();
+
+        assertEquals("Wrong normalization", "/mein/pfad/lied1.mp3",
+                af.normalizeSlashes("/mein//////pfad/lied1.mp3"));   
+
+        assertEquals("Wrong normalization", "/mein/pfad/lied1.mp3",
+                af.normalizeSlashes("/\\mein\\\\//////pfad\\lied1.mp3"));   
+
+    }
+
+
+Und dann in AudioFile programmieren:
+
+public String normalizeSlashes(String s)
+
+...
+
+#
+# Lesen Sie mal im Internet unter Stichwort 'Test driven Development'
+#
+

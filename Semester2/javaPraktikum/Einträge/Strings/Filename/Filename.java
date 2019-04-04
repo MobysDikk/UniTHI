@@ -12,5 +12,6 @@ public static void main(String[] args)
   s = FileName + DatEnd;
 
   System.out.println(s);
+  System.out.println(lastSlash);
 }
 }
