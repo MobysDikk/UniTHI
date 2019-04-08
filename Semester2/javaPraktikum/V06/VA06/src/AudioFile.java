@@ -55,33 +55,43 @@ public class AudioFile {
     public void parseFilename(String filename) {
 
         String fn = filename;
+        // Sonderfall nur"-"
         if (fn == "-") {
             title = "-";
+            // Sonderfall nur " - "
         } else if (fn == " - ") {
             fn = "";
         } else {
-            author = fn.substring(0, fn.indexOf(" - "));
-            // Leerzeichen hinten und vorne entfernen
-            while(author.charAt(0)==' ') {
-                author.substring(1);
-            }
-            while(author.charAt(author.length()-1)==' ') {
-                author.substring(0, author.length());
-            }
-            title = fn.substring(fn.indexOf(" - "), fn.lastIndexOf("."));
-           // Leerzeichen hinten und vorne entfernen
-            while(title.charAt(0)==' ') {
-                title.substring(1);
-            }
-            while(title.charAt(title.length()-1)==' ') {
-                title.substring(0, title.length());
-            }
-            
-            
-        }
-       
-        
 
+            // wenn der FileName ein " - " vorkommt
+            if (fn.contains(" - ")) {
+                author = fn.substring(0, fn.indexOf(" - "));
+                // Leerzeichen hinten und vorne entfernen
+                while (author.charAt(0) == ' ') {
+                    author.substring(1);
+                }
+                while (author.charAt(author.length() - 1) == ' ') {
+                    author.substring(0, author.length());
+                }
+                title = fn.substring(fn.indexOf(" - "), fn.lastIndexOf("."));
+                // Leerzeichen hinten und vorne entfernen
+                while (title.charAt(0) == ' ') {
+                    title.substring(1);
+                }
+                while (title.charAt(title.length() - 1) == ' ') {
+                    title.substring(0, title.length());
+                }
+                // wenn kein " - " vorkommt
+            } else {
+                author = "";
+                title = fn.substring(fn.indexOf(" - "), fn.lastIndexOf("."));
+
+                while (title.charAt(0) == ' ') {
+                    title.substring(1);
+                }
+            }
+
+        }
     }
 
     // Getters

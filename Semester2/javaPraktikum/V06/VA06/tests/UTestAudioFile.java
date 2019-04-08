@@ -64,45 +64,65 @@ public class UTestAudioFile {
         AudioFile af = new AudioFile();
 
         // Testfall1 OK
-        af.parseFilename("");
+        af.parseFilename(" Falco - Rock me Amadeus .mp3");
+        assertEquals("Pathname stored incorrectly", "Falco", af.getAuthor());
+        // Testfall2 OK
+        af.parseFilename("Frankie Goes To Hollywood - The Power Of Love.ogg");
+        assertEquals("Pathname stored incorrectly", "Frankie Goes To Hollywood", af.getAuthor());
+        // Testfall3 OK
+        af.parseFilename("  A.U.T.O.R  - T.I.T.E.L  .EXXTENSION");
+        assertEquals("Pathname stored incorrectly", "A.U.T.O.R", af.getAuthor());
+        // Testfall4 OK
+        af.parseFilename("Hans-Georg Sonstwas - Blue-eyed boy-friend.mp3");
+        assertEquals("Pathname stored incorrectly", "Hans-Georg Sonstwas", af.getAuthor());
+        // Testfall5 OK
+        af.parseFilename("audiofile.aux");
         assertEquals("Pathname stored incorrectly", "", af.getAuthor());
-        // Testfall1 OK
-        af.parseFilename("");
+        // Testfall6 OK
+        af.parseFilename(".mp3");
         assertEquals("Pathname stored incorrectly", "", af.getAuthor());
-        // Testfall1 OK
-        af.parseFilename("");
+        // Testfall7 OK
+        af.parseFilename("Falco - Rock me Amadeus.");
+        assertEquals("Pathname stored incorrectly", "Falco", af.getAuthor());
+        // Testfall8 OK
+        af.parseFilename("-");
         assertEquals("Pathname stored incorrectly", "", af.getAuthor());
-        // Testfall1 OK
-        af.parseFilename("");
-        assertEquals("Pathname stored incorrectly", "", af.getAuthor());
-        // Testfall1 OK
-        af.parseFilename("");
-        assertEquals("Pathname stored incorrectly", "", af.getAuthor());
-        // Testfall1 OK
-        af.parseFilename("");
+        // Testfall9 OK
+        af.parseFilename(" - ");
         assertEquals("Pathname stored incorrectly", "", af.getAuthor());
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 
+
         // Testfall1 OK
-        af.parseFilename("");
+        af.parseFilename(" Falco - Rock me Amadeus .mp3");
+        assertEquals("Pathname stored incorrectly", "Rock me Amadeus", af.getTitle());
+        // Testfall2 OK
+        af.parseFilename("Frankie Goes To Hollywood - The Power Of Love.ogg");
+        assertEquals("Pathname stored incorrectly", "The Power of Love", af.getTitle());
+        // Testfall3 OK
+        af.parseFilename("  A.U.T.O.T  - T.I.T.E.L  .EXXTENSION");
+        assertEquals("Pathname stored incorrectly", "T.I.T.E.L", af.getTitle());
+        // Testfall4 OK
+        af.parseFilename("Hans-Georg Sonstwas - Blue-eyed boy-friend.mp3");
+        assertEquals("Pathname stored incorrectly", "Blue-eyed boy-friend", af.getTitle());
+        // Testfall5 OK
+        af.parseFilename("audiofile.aux");
+        assertEquals("Pathname stored incorrectly", "audiofile", af.getTitle());
+        // Testfall6 OK
+        af.parseFilename(".mp3");
         assertEquals("Pathname stored incorrectly", "", af.getTitle());
-        // Testfall1 OK
-        af.parseFilename("");
-        assertEquals("Pathname stored incorrectly", "", af.getTitle());
-        // Testfall1 OK
-        af.parseFilename("");
-        assertEquals("Pathname stored incorrectly", "", af.getTitle());
-        // Testfall1 OK
-        af.parseFilename("");
-        assertEquals("Pathname stored incorrectly", "", af.getTitle());
-        // Testfall1 OK
-        af.parseFilename("");
-        assertEquals("Pathname stored incorrectly", "", af.getTitle());
-        // Testfall1 OK
-        af.parseFilename("");
+        // Testfall7 OK
+        af.parseFilename("Falco - Rock me Amadeus.");
+        assertEquals("Pathname stored incorrectly", "Rock me Amadeus", af.getTitle());
+        // Testfall8 OK
+        af.parseFilename("-");
+        assertEquals("Pathname stored incorrectly", "-", af.getTitle());
+        // Testfall9 OK
+        af.parseFilename(" - ");
         assertEquals("Pathname stored incorrectly", "", af.getTitle());
 
+    
     }
 
 }
