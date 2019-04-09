@@ -4,8 +4,10 @@ public class AudioFile {
     private String pathName;
     private String fileName;
     private String author;
-    private String title =;
-    private String leer;
+    private String title;
+    private String leer = "";
+    private String author_and_title;
+    private String sonderfall = "-";
 
     // For unit testing
     public AudioFile() {
@@ -13,7 +15,11 @@ public class AudioFile {
     }
 
     // Normal constructor
-    public AudioFile(String path_with_fname) {
+    public AudioFile(String path_and_fileName) {
+        parsePathname(path_and_fileName);
+        parseFilename(fileName);
+        getFilename();
+
     }
 
     // Setters or alike
@@ -25,86 +31,79 @@ public class AudioFile {
         // Einheitliche Slashes
         while (sLi.indexOf("\\") >= 0) {
             String sLi1 = sLi.substring(0, sLi.indexOf("\\"));
-            String sLi2 = "/" + sLi.substring(sLi.indexOf("\\") + 1);
+            String sLi2 = java.io.File.separatorChar + sLi.substring(sLi.indexOf("\\") + 1);
             sLi = sLi1 + sLi2;
         }
         // Laufwerksbuchstaben anpassen
         while (sLi.indexOf(":") >= 0) {
-            sLi = java.io.File.separatorChar + sLi.replaceAll(":", "/");
+            sLi = java.io.File.separatorChar + sLi.replaceAll(":", java.io.File.separator);
         }
         // doppelte Slasches entfernen
         while (sLi.indexOf("//") >= 0) {
-            sLi = sLi.replaceAll("//", "/");
+            sLi = sLi.replaceAll("//", java.io.File.separator);
         }
+
         pathName = sLi;
 
         // fileName //
-        if (pathName.length() > 0 && pathName.indexOf("/") >= 0) {
-            if (pathName.charAt(pathName.length() - 1) == '/') {
-                fileName = leer;
-            } else {
-                fileName = pathName.substring(pathName.lastIndexOf("/") + 1);
-            }
-            // wenn string leer oder keine "/" enthalten
-        } else {
-            fileName = pathName;
-
+        if (pathName.indexOf(".") < 0) {
+            fileName = leer;
         }
+        if (pathName.lastIndexOf(java.io.File.separator) > pathName.lastIndexOf(".")) {
+            fileName = leer;
+        }
+        fileName = pathName.substring(pathName.lastIndexOf(java.io.File.separator) + 1);
 
     }
 
-    public void parseFilename(String fileName) {
+    public void parseFilename(String file_Name) {
 
-        String fn = fileName;
+        String fn = file_Name;
 
-        // wenn der FileName ein " - " vorkommt
-        if (fn.indexOf(" - ") >= 0) {
+        // wenn der FileName ein " - " und "." vorkommt
+        if (fn.indexOf(" - ") >= 0 && fn.indexOf(".") >= 0) {
+            fn = fn.trim();
 
-            // Leerzeichen vorne entfernen
-            while (fn.charAt(0) == ' ') {
-                fn = fn.substring(1);
-            }
             author = fn.substring(0, fn.indexOf(" - "));
-            // Anhängende Leerzeichen entfernen
-            while (author.charAt(author.length() - 1) == ' ') {
-                author = author.substring(0, author.length() - 1);
-            }
+            // Leerzeichen entfernen
+            author = author.trim();
 
-            // Falls ein Punkt enthalten ist
-            if (fn.indexOf(".") >= 0) {
-                title = fn.substring(fn.lastIndexOf(" - ") + 2, fn.lastIndexOf("."));
-                // vorlaufende Leerzeichen entfernen
-                while (title.charAt(0) == ' ') {
-                    title = title.substring(1);
-                }
-                // nachlaufende Leerzeichen entferenen
-                while (title.charAt(title.length() - 1) == ' ') {
-                    title = title.substring(0, title.length());
-                }
+            title = fn.substring(fn.lastIndexOf(" - ") + 2, fn.lastIndexOf("."));
+            // Leerzeichen entfernen
+            title = title.trim();
 
-            } else {
-                title = fn.substring(fn.lastIndexOf(" - ") + 2);
-                // vorlaufende Leerzeichen entfernen
-                while (title.charAt(0) == ' ') {
-                    title = title.substring(1);
-                }
-                // nachlaufende Leerzeichen entferenen
-                while (title.charAt(title.length() - 1) == ' ') {
-                    title = title.substring(0, title.length());
-                }
-            }
+            // wenn nur "." vorkommt
+        } else if (fn.indexOf(".") >= 0) {
+            author = leer;
+            title = fn.substring(0, fn.lastIndexOf("."));
+            title = title.trim();
 
-            // wenn kein " - " vorkommt
+            // wen nur ein " - "vorkommt
+        } else if (fn.indexOf(" - ") >= 0) {
+
+            author = leer;
+            title = leer;
+
+            // wenn kein " - " oder "." vorkommt
         } else {
             author = leer;
-
-            if (fn.indexOf(".") >= 0) {
-                title = fn.substring(0, fn.lastIndexOf("."));
-            } else {
-                title = fn;
-            }
+            title = fn;
+            title = title.trim();
         }
 
+        // SOnderfall nur "-"
+        if (fn == sonderfall) {
+            author = leer;
+            title = sonderfall;
+        }
+
+        if (author == leer) {
+            author_and_title = title;
+            author_and_title = author_and_title.trim();
+        } else {
+            author_and_title = author + " - " + title;
+            author_and_title = author_and_title.trim();
+        }
     }
 
     // Getters
@@ -123,5 +122,9 @@ public class AudioFile {
     public String getTitle() {
         return title;
 
+    }
+
+    public String toString() {
+        return author_and_title;
     }
 }
