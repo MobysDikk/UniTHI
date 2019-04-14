@@ -20,12 +20,12 @@ public abstract class AudioFile {
     public AudioFile(String path_and_fileName) {
         parsePathname(path_and_fileName);
         parseFilename(fileName);
-        getFilename();
+        //getFilename();
         
         
         File cr = new File(pathName);
         if(cr.canRead()==false) {
-            throw new RuntimeException("Der Pfad " + pathName + " ist nicht leesbar");
+            throw new RuntimeException("Der Pfad " + pathName + " ist nicht lesbar");
         }
     }
 
@@ -34,8 +34,8 @@ public abstract class AudioFile {
     public abstract void play();
     public abstract void togglePause();
     public abstract void stop();
-    public abstract void getFormatterDuration();
-    public abstract void getFormatterPosition();
+    public abstract String getFormattedDuration();
+    public abstract String getFormattedPosition();
     
     
     // Setters or alike
