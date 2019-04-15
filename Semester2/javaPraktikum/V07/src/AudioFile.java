@@ -3,10 +3,10 @@ import java.io.File;
 public abstract class AudioFile {
 
     // Atribute
-    private String pathName;
-    private String fileName;
-    private String author;
-    private String title;
+    protected String pathName;
+    protected String fileName;
+    protected String author; // durch protected können nun Erb-Klassen diese Atribute benutzen
+    protected String title;
     private String leer = "";
     private String author_and_title;
     private String sonderfall = "-";
@@ -123,8 +123,6 @@ public abstract class AudioFile {
     }
     
    
-    
-
     // Getters
     public String getPathname() {
         return pathName;
@@ -146,4 +144,6 @@ public abstract class AudioFile {
     public String toString() {
         return author_and_title;
     }
+    
+    public abstract String[] fields();
 }

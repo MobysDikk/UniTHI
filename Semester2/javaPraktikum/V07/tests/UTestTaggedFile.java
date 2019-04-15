@@ -37,7 +37,7 @@ public class UTestTaggedFile {
         assertEquals("Wrong time format" , "05:05",
               TaggedFile.timeFormatter(305862000L));  
     }
-    @Test
+    @Test@Ignore
     public void test_timeFormatter_02() throws Exception {
         try {
             // call method with time value that underflows out format
@@ -52,7 +52,7 @@ public class UTestTaggedFile {
     
     //Read all tags from a TaffedfILE
     //This test demonstrates the functionality of TagReadeer.readTags()
-    @Test //@Ignore
+    @Test@Ignore
     public void test_readTaggs_01() throws Exception {
         TaggedFile tf = new TaggedFile("audiofiles/Rock 812.mp3");
         Map<String, Object> tag_map = TagReader.readTags(tf.getPathname());
@@ -62,4 +62,14 @@ public class UTestTaggedFile {
             System.out.printf("Value: " + tag_map.get(key));
         }
     }
+    
+    @Test
+    public void test_readAndStore_01() throws Exception {
+        TaggedFile tf = new TaggedFile();
+        tf.readAndStoreTags("audiofiles/Rock 812.mp3");
+        assertEquals("Wrong author", "Eisbach", tf.getAuthor());
+        assertEquals("Wrong title", "Rock 812", tf.getTitle());
+        assertEquals("Wrong album", "The Sea, the Sky", tf.getAlbum());
+        assertEquals("Wrong time fomrat", "05:31", tf.getFormattedDuration());
+    }   
 }

@@ -23,13 +23,13 @@ public class UTestAudioFile {
         assertEquals("", af.getTitle());   // nur titel
         assertEquals("", af.toString());   // autor - titel
 
-        af.parsePathname("/tmp/test/   A.U.T.O.R  -  T.I.T.E.L   .Extensions");
-        assertEquals("Pathname stored incorrectly", "/tmp/test/   A.U.T.O.R  -  T.I.T.E.L   .Extensions", af.getPathname());
-        assertEquals("Filename stored incorrectly", "   A.U.T.O.R  -  T.I.T.E.L   .Extensions", af.getFilename());
+        af.parsePathname("audiofiles\\\\\\\\\\\\Rock 812.mp3");
+        assertEquals("audiofiles/Rock 812.mp3", af.getPathname());
+        assertEquals("Filename stored incorrectly", "Rock 812.mp3", af.getFilename());
         af.parseFilename(af.getFilename());
-        assertEquals("Author stored incorrectly", "A.U.T.O.R", af.getAuthor());
-        assertEquals("Title  stored incorrectly", "T.I.T.E.L", af.getTitle());
-        assertEquals("Title  stored incorrectly", "A.U.T.O.R - T.I.T.E.L", af.toString());
+        assertEquals("Author stored incorrectly", "", af.getAuthor());
+        assertEquals("Title  stored incorrectly", "Rock 812", af.getTitle());
+        assertEquals("Title  stored incorrectly", "Rock 812", af.toString());
 
         af.parsePathname("/tmp/test/   A.U.T.O.R  -  T.I.T.E.L   .Extensions");
         assertEquals("Pathname stored incorrectly", "/tmp/test/   A.U.T.O.R  -  T.I.T.E.L   .Extensions", af.getPathname());
