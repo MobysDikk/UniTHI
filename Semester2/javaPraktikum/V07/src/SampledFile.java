@@ -15,8 +15,10 @@ public abstract class SampledFile extends AudioFile {
         super(s);
     }
     
+    
+    
     //Setters/////////////////////////////////////////////////////////////
-    public void play() { // Pfadnamen damit der weis wo das lied ist
+    public void play() { 
 
         BasicPlayer.play(getPathname());
     }
@@ -30,6 +32,8 @@ public abstract class SampledFile extends AudioFile {
         
         BasicPlayer.stop();
     }
+    
+    
     //Getter//////////////////////////////////////////////////////////////
     public String getFormattedDuration() { 
         time_duration = timeFormatter(duration);

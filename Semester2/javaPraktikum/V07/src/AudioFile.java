@@ -8,9 +8,8 @@ public abstract class AudioFile {
     protected String author; // durch protected können nun Erb-Klassen diese Atribute benutzen
     protected String title;
     private String leer = "";
-    private String author_and_title;
     private String sonderfall = "-";
-
+    private String author_and_title;
     // For unit testing
     public AudioFile() {
 
@@ -20,24 +19,26 @@ public abstract class AudioFile {
     public AudioFile(String path_and_fileName) {
         parsePathname(path_and_fileName);
         parseFilename(fileName);
-        //getFilename();
-        
-        
+        // getFilename();
+
         File cr = new File(pathName);
-        if(cr.canRead()==false) {
+        if (cr.canRead() == false) {
             throw new RuntimeException("Der Pfad " + pathName + " ist nicht lesbar");
         }
     }
 
     // abstarct methoden für späteren verlauf
-    
+
     public abstract void play();
+
     public abstract void togglePause();
+
     public abstract void stop();
+
     public abstract String getFormattedDuration();
+
     public abstract String getFormattedPosition();
-    
-    
+
     // Setters or alike
     public void parsePathname(String chaosPathName) {
 
@@ -76,25 +77,20 @@ public abstract class AudioFile {
 
         String fn = file_Name;
 
-        // wenn der FileName ein " - " und "." vorkommt
+        // wenn im FileName ein " - " und "." vorkommt
         if (fn.indexOf(" - ") >= 0 && fn.indexOf(".") >= 0) {
             fn = fn.trim();
 
             author = fn.substring(0, fn.indexOf(" - "));
-            // Leerzeichen entfernen
-            author = author.trim();
 
             title = fn.substring(fn.lastIndexOf(" - ") + 2, fn.lastIndexOf("."));
-            // Leerzeichen entfernen
-            title = title.trim();
 
             // wenn nur "." vorkommt
         } else if (fn.indexOf(".") >= 0) {
             author = leer;
             title = fn.substring(0, fn.lastIndexOf("."));
-            title = title.trim();
 
-            // wen nur ein " - "vorkommt
+            // wen nur ein " - " vorkommt
         } else if (fn.indexOf(" - ") >= 0) {
 
             author = leer;
@@ -104,7 +100,7 @@ public abstract class AudioFile {
         } else {
             author = leer;
             title = fn;
-            title = title.trim();
+
         }
 
         // SOnderfall nur "-"
@@ -115,35 +111,39 @@ public abstract class AudioFile {
 
         if (author == leer) {
             author_and_title = title;
-            author_and_title = author_and_title.trim();
+
         } else {
             author_and_title = author + " - " + title;
-            author_and_title = author_and_title.trim();
+
         }
     }
-    
-   
+
     // Getters
     public String getPathname() {
+        pathName = pathName.trim();
         return pathName;
     }
 
     public String getFilename() {
+        fileName = fileName.trim();
         return fileName;
     }
 
     public String getAuthor() {
+        author = author.trim();
         return author;
     }
 
     public String getTitle() {
+        title = title.trim();
         return title;
 
     }
 
     public String toString() {
+        author_and_title = author_and_title.trim();
         return author_and_title;
     }
-    
+
     public abstract String[] fields();
 }
