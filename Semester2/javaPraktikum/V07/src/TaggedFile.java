@@ -34,7 +34,7 @@ public class TaggedFile extends SampledFile {
         if (tag_map.containsKey("author")) {
             String au = (String) tag_map.get("author");
 
-            if (au == null) {
+            if (au == null) {                 // MERKE: bei oder verknüpfungen muss die "null" abfrage immer als letztes stehen
                 author = super.author;
             }
 
