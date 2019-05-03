@@ -1,18 +1,23 @@
 import java.util.LinkedList;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Collections;
 
 public class PlayList extends LinkedList<AudioFile> { // Listen befehle:
-                                                      // https://www.journaldev.com/13386/java-linkedlist-linkedlist-java#java-linkedlist-generics
-    
+                                                      // https://www.tutorialspoint.com/java/util/java_util_linkedlist.htm
+
     // Atributes
     private int curPos;
+    private boolean playMod;
     
     // Konstruktors
     public PlayList() {
         setCurrent(curPos);
+        setRandomOrder(playMod = false);
     }
 
     public void setCurrent(int current) {
-
+        curPos = current;
     }
 
     public int getCurrent() {
@@ -21,22 +26,62 @@ public class PlayList extends LinkedList<AudioFile> { // Listen befehle:
 
     public AudioFile getCurrentAudioFile() {
 
-        if (pl.isEmpty()) {
+        if (this.isEmpty()) {
             return null;
-        } else if (pl.get(curPos) == null) {
-            return null;
-        } else {
-            return pl.get(curPos);
+        } else if (this.size() <= curPos) { // !!!!!!!!!!!!!!!!!!!!
+            return null;    
+       } else {
+            return this.get(curPos);
         }
 
     }
-    
-    public void changeCurrent() {
-       
-    }
-    
-    public void setRandomOrder(boolean randomeOrder) {
-        
-    }
 
+    public void changeCurrent() {
+        if(playMod = false) {
+        if(this.size() -1 == curPos) {
+            curPos = 0;
+        }else {curPos++;}
+         }
+        
+        if(playMod = true) {
+            if(this.size() -1 == curPos) {
+                Collections.shuffle(this);
+                curPos = 0;
+            }else {curPos++;}    
+        }
+    }
+    
+
+    public void setRandomOrder(boolean randomeOrder) {
+           playMod = randomeOrder;
+        if (playMod=true) {
+            Collections.shuffle(this);
+        }
+        }
+    
+    
+    public void saveAsM3U(String pathname) {
+        FileWriter writer = null;
+
+        String fname = "Playlist.txt.";
+        //String linesep = System.getProperty("line.seperator");
+         String linesep ="\n";
+        try {
+
+            writer = new FileWriter(fname);
+
+            writer.write("# MorisB Liste" + linesep);
+            writer.write(pathname + linesep);
+            
+        } catch (IOException e) {
+            throw new RuntimeException("Unable to write to file " + fname + ":" + e.getMessage());
+        } finally {
+            try {
+                writer.close();
+            } catch (Exception e) {
+
+            }
+
+        }
+    }
 }
