@@ -199,7 +199,7 @@ public class PlayListTest extends TestCase {
         // Try to load the PlayList again
         PlayList pl2 = null;
 
-        pl2 = new PlayList(m3uName);
+        pl2 = new PlayList("pl.m3u");
         assertEquals(
                 "Load PlayList from M3U file yields wrong result",
                 "[Eisbach - Rock 812 - The Sea, the Sky - 05:31, "

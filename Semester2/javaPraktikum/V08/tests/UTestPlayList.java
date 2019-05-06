@@ -92,7 +92,7 @@ public class UTestPlayList {
         }
     }
 
-   /* @Test
+    /* @Test
     public void test_ReadLinesFromFile_o1() throws Exception {
         FileWriter writer = null;
 
@@ -104,9 +104,8 @@ public class UTestPlayList {
             writer = new FileWriter(fname);
             //Write some strings to the file
             writer.write("# Moris Breiteborns erste Liste" + linesep);
-            writer.write("Line1" + linesep);
-            writer.write("Line2" + linesep);
-            writer.write("Line3" + linesep);
+            writer.write("Lin2" + linesep);
+            
         } catch (IOException e) {
             throw new RuntimeException("Unable to write to file " + fname + ":" + e.getMessage());
         } finally {
@@ -119,7 +118,7 @@ public class UTestPlayList {
         }
     }
     
-    @Test
+   /* @Test
     public void test_ReadLinesFromFile_01() throws Exception {
         String fname = "file.txt";
         Scanner scanner = null;
