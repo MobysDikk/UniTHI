@@ -79,9 +79,10 @@ public class PlayList extends LinkedList<AudioFile> { // Listen befehle:
 
             writer = new FileWriter(fname);
 
-           // writer.write("# MorisB Liste" + linesep);
+            writer.write("# MorisB Liste" + linesep);
             for(int i =0; i <= this.size()-1;i++) {
-            writer.write(this.get(i) + linesep);
+            writer.write(this.get(i).getPathname() + linesep);
+            
             }
             
         } catch (IOException e) {
@@ -107,21 +108,25 @@ public class PlayList extends LinkedList<AudioFile> { // Listen befehle:
             //Create a Scanner
             scanner = new Scanner(new File(fname));
             
+            
+                
            //read line by line
            // int i =1;
             while (scanner.hasNextLine()) {
                 line = scanner.nextLine();
+                line = line.trim();
                 
-                if(!line.isEmpty()) {
-                if(line.charAt(0)!='#') {
-                //this.add(AudioFileFactory.getInstance(line));//////////////////////////////////////////////////////////////////////// Lutscher
-                
-                System.out.println(line);}}
-                
-                //i++;
+                 if(!line.isEmpty()) {   
+                 if(line.charAt(0)!='#' ) {
+                 this.add(AudioFileFactory.getInstance(line));}}
+                 
+            }
+            
+            if(this.isEmpty()){
+                throw new RuntimeException ("M3U is empty");
             }
         }catch (IOException e) {
-            // e.printStackTrace();
+             //e.printStackTrace();
             throw new RuntimeException(e);
         } finally {
             try {
@@ -132,4 +137,6 @@ public class PlayList extends LinkedList<AudioFile> { // Listen befehle:
         
     }
 }
+    
+    
 }
