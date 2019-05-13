@@ -6,8 +6,7 @@ public class AlbumComparator implements Comparator<AudioFile> {
 
     public int compare(AudioFile af1, AudioFile af2) {
 
-        if (AudioFileFactory.getInstance(af1.getPathname()) instanceof TaggedFile == true
-                && AudioFileFactory.getInstance(af2.getPathname()) instanceof TaggedFile == true) {
+        if (af1 instanceof TaggedFile == true && af2 instanceof TaggedFile == true) {
             TaggedFile tf1 = (TaggedFile) af1;
             TaggedFile tf2 = (TaggedFile) af2;
 
@@ -35,14 +34,12 @@ public class AlbumComparator implements Comparator<AudioFile> {
                 return 2;
             }
 
-        } else if (AudioFileFactory.getInstance(af1.getPathname()) instanceof TaggedFile == true
-                && AudioFileFactory.getInstance(af2.getPathname()) instanceof TaggedFile == false) {
+        } else if (af1 instanceof TaggedFile == true && af2 instanceof TaggedFile == false) {
             return 1;
-        } else if (AudioFileFactory.getInstance(af1.getPathname()) instanceof TaggedFile == false
-                && AudioFileFactory.getInstance(af2.getPathname()) instanceof TaggedFile == true) {
+        } else if (af1 instanceof TaggedFile == false&& af2 instanceof TaggedFile == true) {
             return -1;
         } else {
-            return 2;
+            return 0;
         }
     }
 
