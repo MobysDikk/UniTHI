@@ -29,7 +29,7 @@ public class TaggedFile extends SampledFile {
         try {
             TagReader.readTags(pathname);
         }catch(RuntimeException e) {
-            
+            throw new NotPlayableException(pathName, e );
         }
         
         

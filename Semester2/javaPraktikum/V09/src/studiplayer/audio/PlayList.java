@@ -1,9 +1,11 @@
 package studiplayer.audio;
+
 import java.util.LinkedList;
 
 import java.util.Scanner;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Collections;
@@ -20,13 +22,17 @@ public class PlayList extends LinkedList<AudioFile> { // Listen befehle:
 
     }
 
-    public PlayList(String a) throws NotPlayableException {
+    public PlayList(String a) {
         setCurrent(curPos);
         setRandomOrder(playMod = false);
+        try {
+            loadFromM3U(a);
+        } catch (Exception e) {
 
-        loadFromM3U(a);
+        }
 
     }
+
     // Setters
     public void setCurrent(int current) {
         curPos = current;
@@ -104,52 +110,57 @@ public class PlayList extends LinkedList<AudioFile> { // Listen befehle:
         }
     }
 
-    public void loadFromM3U(String pathname) throws NotPlayableException {
+    public void loadFromM3U(String pathname) throws NotPlayableException{
 
-        this.clear();
-
+this.clear();
+        
         String fname = pathname;
         Scanner scanner = null;
         String line;
         try {
-            // Create a Scanner
+            //Create a Scanner
             scanner = new Scanner(new File(fname));
-
-            // read line by line
-            // int i =1;
+            
+            
+                
+           //read line by line
+           // int i =1;
             while (scanner.hasNextLine()) {
                 line = scanner.nextLine();
                 line = line.trim();
-
-                if (!line.isEmpty()) {
-                    if (line.charAt(0) != '#') {
-                        this.add(AudioFileFactory.getInstance(line));
-                    }}}
-             
-
-            if (this.isEmpty()) {
-                throw new RuntimeException("M3U is empty");
+                
+                 if(!line.isEmpty()) {   
+                 if(line.charAt(0)!='#' ) {
+                 this.add(AudioFileFactory.getInstance(line));}}
+                 
             }
-        } catch (IOException e) {
-                // e.printStackTrace();
+            
+            if(this.isEmpty()){
+                throw new RuntimeException ("M3U is empty");
+            }
+        }catch (IOException e) {
+             //e.printStackTrace();
             throw new RuntimeException(e);
-        //}catch (NotPlayableException e){
-        //    e.printStackTrace();
         } finally {
             try {
-                scanner.close();
-            } catch (Exception e) {
+            scanner.close();
+            }catch (Exception e) {
+            
+        }
+    }}
 
-            }}}
-    
-    public void sort(SortCriterion order) {  // ENUM https://www.youtube.com/watch?v=NIUGbgLU5Uk
-        
-       switch(order) {
-       case AUTHOR:   Collections.sort(this,new AuthorComparator());
-       case TITLE:    Collections.sort(this, new TitleComparator());
-       case ALBUM:    Collections.sort(this, new AlbumComparator());
-       case DURATION: Collections.sort(this, new DurationComparator());
-       }
+    public void sort(SortCriterion order) { // ENUM https://www.youtube.com/watch?v=NIUGbgLU5Uk
+
+        switch (order) {
+        case AUTHOR:
+            Collections.sort(this, new AuthorComparator());
+        case TITLE:
+            Collections.sort(this, new TitleComparator());
+        case ALBUM:
+            Collections.sort(this, new AlbumComparator());
+        case DURATION:
+            Collections.sort(this, new DurationComparator());
+        }
     }
 
 }

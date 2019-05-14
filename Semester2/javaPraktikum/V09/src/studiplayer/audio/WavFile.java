@@ -20,7 +20,7 @@ public class WavFile extends SampledFile {
         try {
         WavParamReader.readParams(pathname);
         }catch(RuntimeException e) {
-            
+            throw new NotPlayableException(pathName, e );
         }
         long allFrames = WavParamReader.getNumberOfFrames();
         float framesPerSecond = WavParamReader.getFrameRate();

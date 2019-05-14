@@ -25,7 +25,7 @@ public abstract class SampledFile extends AudioFile {
         try {
         BasicPlayer.play(pathName);
        }catch (RuntimeException e) {
-           
+           throw new NotPlayableException(pathName, e );
        }
    
     }
