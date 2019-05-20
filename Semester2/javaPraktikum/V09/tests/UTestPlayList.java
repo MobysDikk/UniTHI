@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import studiplayer.audio.AudioFile;
+import studiplayer.audio.NotPlayableException;
 import studiplayer.audio.PlayList;
 import studiplayer.audio.SortCriterion;
 import studiplayer.audio.TaggedFile;
@@ -97,7 +98,7 @@ public class UTestPlayList {
         }
     }
 
-    @Ignore@Test
+    @Test
     public void test_sort_byTitle_01() throws Exception {
         PlayList pl1 = new PlayList();
         //Populate the playlist
@@ -153,6 +154,27 @@ public class UTestPlayList {
             i++;
         }
         assertArrayEquals("Wrong sorting by duration", exp, sorted);
+    }
+    
+    @Test
+    public void test_sort_Album_01() throws Exception {
+    PlayList pl1 = new PlayList();
+    try {
+        pl1.add(new TaggedFile("audiofiles/kein.wav.sondern.ogg"));
+        pl1.add(new TaggedFile("audiofiles/Rock 812.mp3"));
+        pl1.add(new WavFile("audiofiles/wellenmeister - tranquility.wav"));
+        pl1.add(new TaggedFile("audiofiles/wellenmeister_awakening.ogg"));
+    } catch (NotPlayableException e) {
+        fail("Cannot create AudioFile:" + e.getMessage());
+    }
+    pl1.sort(SortCriterion.ALBUM);
+    assertEquals(
+            "Sorting according to criterion album is not correct",
+            "[wellenmeister - tranquility - 02:21, "
+                    + "kein.wav.sondern - 00:00, "
+                    + "Eisbach - Rock 812 - The Sea, the Sky - 05:31, "
+                    + "Wellenmeister - TANOM Part I: Awakening - TheAbsoluteNecessityOfMeaning - 05:55]",
+            pl1.toString());
     }
     
 }

@@ -303,7 +303,7 @@ public class PlayListTest extends TestCase {
         } catch (NotPlayableException e) {
             fail("Cannot create AudioFile:" + e.getMessage());
         }
-        pl1.sort(SortCriterion.ALBUM);
+       pl1.sort(SortCriterion.ALBUM);
         assertEquals(
                 "Sorting according to criterion album is not correct",
                 "[wellenmeister - tranquility - 02:21, "

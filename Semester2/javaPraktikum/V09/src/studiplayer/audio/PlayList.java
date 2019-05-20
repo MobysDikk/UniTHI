@@ -25,9 +25,10 @@ public class PlayList extends LinkedList<AudioFile> { // Listen befehle:
     public PlayList(String a) {
         setCurrent(curPos);
         setRandomOrder(playMod = false);
+
         try {
             loadFromM3U(a);
-        } catch (Exception e) {
+        } catch (NotPlayableException e) {
 
         }
 
@@ -110,56 +111,62 @@ public class PlayList extends LinkedList<AudioFile> { // Listen befehle:
         }
     }
 
-    public void loadFromM3U(String pathname) throws NotPlayableException{
+    public void loadFromM3U(String pathname) throws NotPlayableException {
 
-this.clear();
-        
+        this.clear();
+
         String fname = pathname;
         Scanner scanner = null;
         String line;
+
         try {
-            //Create a Scanner
+            // Create a Scanner
             scanner = new Scanner(new File(fname));
             
-            
-                
-           //read line by line
-           // int i =1;
+             
+            // read line by line
+            // int i =1;
             while (scanner.hasNextLine()) {
                 line = scanner.nextLine();
                 line = line.trim();
-                
-                 if(!line.isEmpty()) {   
-                 if(line.charAt(0)!='#' ) {
-                 this.add(AudioFileFactory.getInstance(line));}}
-                 
-            }
-            
-            if(this.isEmpty()){
-                throw new RuntimeException ("M3U is empty");
-            }
-        }catch (IOException e) {
-             //e.printStackTrace();
+
+                if (!line.isEmpty()) {
+                    if (line.charAt(0) != '#') {
+                        try {
+                            this.add(AudioFileFactory.getInstance(line));
+                        } catch (NotPlayableException e) {
+                            e.printStackTrace();
+                        }}}}
+
+           
+        } catch (IOException e) {
+            // e.printStackTrace();
             throw new RuntimeException(e);
+
         } finally {
             try {
-            scanner.close();
-            }catch (Exception e) {
-            
+                scanner.close();
+            } catch (Exception e) {
+            }
         }
-    }}
+
+    }
 
     public void sort(SortCriterion order) { // ENUM https://www.youtube.com/watch?v=NIUGbgLU5Uk
 
         switch (order) {
         case AUTHOR:
             Collections.sort(this, new AuthorComparator());
+            break;
         case TITLE:
             Collections.sort(this, new TitleComparator());
+            break;
         case ALBUM:
             Collections.sort(this, new AlbumComparator());
+            break;
         case DURATION:
             Collections.sort(this, new DurationComparator());
+            break;
         }
     }
 

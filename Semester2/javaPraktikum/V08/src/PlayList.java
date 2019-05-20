@@ -106,10 +106,13 @@ public class PlayList extends LinkedList<AudioFile> { // Listen befehle:
         String line;
         try {
             //Create a Scanner
+            
             scanner = new Scanner(new File(fname));
             
             
-                
+             if(scanner.hasNextLine()==false) {
+                 throw new RuntimeException("M3U does not exsist");
+             }
            //read line by line
            // int i =1;
             while (scanner.hasNextLine()) {
@@ -122,12 +125,14 @@ public class PlayList extends LinkedList<AudioFile> { // Listen befehle:
                  
             }
             
-            if(this.isEmpty()){
-                throw new RuntimeException ("M3U is empty");
-            }
+            
+
+            
         }catch (IOException e) {
              //e.printStackTrace();
-            throw new RuntimeException(e);
+            throw new RuntimeException("M3u existiert nicht");
+        }catch (NullPointerException e) {
+            
         } finally {
             try {
             scanner.close();

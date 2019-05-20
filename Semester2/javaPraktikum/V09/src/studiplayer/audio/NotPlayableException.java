@@ -7,18 +7,18 @@ public class NotPlayableException extends Exception {  //http://www.inf.fu-berli
     
     //Konstruktoren
     public NotPlayableException(String pathname, String msg) {
-        super();
-        this.pathname = pathname + ", " + msg;
+        super(msg);
+        this.pathname = pathname;
     }
     
     public NotPlayableException(String pathname, Throwable t) {
-        super();
-        this.pathname = pathname + ", " + t;
+        super(t);
+        this.pathname = pathname;
     }
     
     public NotPlayableException(String pathname, String msg, Throwable t) {
-        super();
-        this.pathname = pathname + ", " + msg + ", " + t;
+        super(msg, t);
+        this.pathname = pathname;
     }
     
     public String toString() {

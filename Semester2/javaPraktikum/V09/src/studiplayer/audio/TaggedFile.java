@@ -73,6 +73,7 @@ public class TaggedFile extends SampledFile {
 
         if (tag_map.get("album") != null) {
             album = (String) tag_map.get("album");
+            album = album.trim();
         } else {
             album = null;
         }
@@ -84,7 +85,7 @@ public class TaggedFile extends SampledFile {
     // Getters /////////////////////////////////////////////////////////
 
     public String getAlbum() {
-        album = album.trim();
+        //album = album.trim();
         return album;
     }
 
