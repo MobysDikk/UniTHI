@@ -128,11 +128,13 @@ public class Player extends JFrame implements ActionListener {
         af = playList.getCurrentAudioFile();
         if(af!=null) {
         updateSongInfo(af);
+        stopped = false;
         //Threads
         (new TimerThread()).start();
         (new PlayerThread()).start();
-        stopped = false;
-        }else { playList.changeCurrent();}
+        
+        }else { playList.changeCurrent();
+        }
 
         System.out.println("Playing " + af.toString());
         System.out.println("Filename is " + af.getFilename());
@@ -141,14 +143,14 @@ public class Player extends JFrame implements ActionListener {
     }
 
     private void stopCurrentSong() {
-        AudioFile af;
-        af = playList.getCurrentAudioFile();
+       stopped = true;
         playList.getCurrentAudioFile().stop();
-        updateSongInfo(af);
-        stopped = true;
+        
+        updateSongInfo( playList.getCurrentAudioFile());
+       // stopped = true;
 
-        System.out.println("Playing " + af.toString());
-        System.out.println("Filename is " + af.getFilename());
+        System.out.println("Playing " +  playList.getCurrentAudioFile().toString());
+        System.out.println("Filename is " +  playList.getCurrentAudioFile().getFilename());
         System.out.println("Current index is " + playList.getCurrent());
      
     }
@@ -184,11 +186,7 @@ public class Player extends JFrame implements ActionListener {
             
             af = playList.getCurrentAudioFile();
             playList.getCurrentAudioFile().togglePause();
-            if (stopped == false) {
-                stopCurrentSong();
-            } else if (stopped == true) {
-                playCurrentSong();
-            }
+            
             if (stopped == true) {
                 pause.setEnabled(true);
                 stop.setEnabled(true);
@@ -226,17 +224,21 @@ public class Player extends JFrame implements ActionListener {
 
         private class TimerThread extends Thread {
 
-            public void run() {
-
+            public void run() {                  
+                    
+                    
                 while (!stopped && !playList.isEmpty()) {
-                    playTime.setText(playList.getCurrentAudioFile().getFormattedPosition());
+                    playTime.setText("<html>" + playList.getCurrentAudioFile().getFormattedPosition()+"</html> ");
+                    try {
+                        sleep(100);
+
+                    } catch (InterruptedException e) {
+
+                    }
+                
+                
                 }
-                try {
-                    sleep(100);
-
-                } catch (InterruptedException e) {
-
-                }} }
+                } }
 
         private class PlayerThread extends Thread {
 
