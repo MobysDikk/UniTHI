@@ -27,17 +27,23 @@ public class Player extends JFrame implements ActionListener {
     private String noTime = "--:--";
     private String startTime = "00:00";
     private static PlayList playList;
-    public static String DEFAULT_PLAYLIST = "playlists/DefaultPlayList.m3u";
+    public static final String DEFAULT_PLAYLIST = "playlists/DefaultPlayList.m3u";
     private JLabel songDescription;
     private JLabel playTime;
     private JButton play;
     private JButton pause;
     private JButton stop;
     private volatile boolean stopped = true;
+    private PlayListEditor playListEditor;
+    private boolean editorVisible =false;
 
     public Player(PlayList pl) {
+        
+        
 
         playList = pl;
+        
+        playListEditor = new PlayListEditor (this, this.playList);
 
         // Initialize the main frame
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,7 +65,7 @@ public class Player extends JFrame implements ActionListener {
         if (playList.isEmpty()) {
             songDescription = new JLabel("<html>" + noSong + "</html> ");
         } else {
-            songDescription = new JLabel("<html>" + playList.get(playList.getCurrent()).toString() + "</html> ");
+            songDescription = new JLabel(playList.get(playList.getCurrent()).toString());
         }
         add(songDescription, BorderLayout.NORTH);
 
@@ -103,6 +109,7 @@ public class Player extends JFrame implements ActionListener {
         this.pack();
         this.setVisible(true);
 
+        // GUI start buttons
         if (stopped == true) {
             pause.setEnabled(false);
             stop.setEnabled(false);
@@ -114,12 +121,12 @@ public class Player extends JFrame implements ActionListener {
 
         if (af != null) {
             setTitle(currentSong + playList.get(playList.getCurrent()).toString());
-            songDescription.setText("<html>" + playList.get(playList.getCurrent()).toString() + "</html> ");
-            playTime.setText("<html>" + startTime + "</html> ");
+            songDescription.setText(playList.get(playList.getCurrent()).toString());
+            playTime.setText(startTime);
         } else {
             setTitle("Studiplayer: " + empty);
             songDescription.setText("<html>" + noSong + "</html> ");
-            playTime.setText("<html>" + noTime + "</html> ");
+            playTime.setText(startTime);
         }
     }
 
@@ -135,11 +142,6 @@ public class Player extends JFrame implements ActionListener {
         
         }else { playList.changeCurrent();
         }
-
-        System.out.println("Playing " + af.toString());
-        System.out.println("Filename is " + af.getFilename());
-        System.out.println("Current index is " + playList.getCurrent());
-
     }
 
     private void stopCurrentSong() {
@@ -147,12 +149,7 @@ public class Player extends JFrame implements ActionListener {
         playList.getCurrentAudioFile().stop();
         
         updateSongInfo( playList.getCurrentAudioFile());
-       // stopped = true;
-
-        System.out.println("Playing " +  playList.getCurrentAudioFile().toString());
-        System.out.println("Filename is " +  playList.getCurrentAudioFile().getFilename());
-        System.out.println("Current index is " + playList.getCurrent());
-     
+       // stopped = true;   
     }
     
     private void playStopNext() {
@@ -174,16 +171,13 @@ public class Player extends JFrame implements ActionListener {
         
         /////////////////////////////////////////////////////////////////////////////////////////
         if (cmd.equals("AC_PLAY")) {
-            System.out.println("pressing Play");
-
+      
             playCurrentSong();
             playStopNext();
-            System.out.println("");
+
         /////////////////////////////////////////////////////////////////////////////////////////
         } else if (cmd.equals("AC_PAUSE")) {
-            
-            System.out.println("pressing Pause");
-            
+           
             af = playList.getCurrentAudioFile();
             playList.getCurrentAudioFile().togglePause();
             
@@ -196,17 +190,16 @@ public class Player extends JFrame implements ActionListener {
                 pause.setEnabled(true);
                 stop.setEnabled(true);
             }
-            System.out.println("");
+         
         ////////////////////////////////////////////////////////////////////////////////////////////
         } else if (cmd.equals("AC_STOP")) {
-            System.out.println("pressing Stop");
+            
             stopCurrentSong();
             playStopNext();
-            System.out.println("");
+            
         ////////////////////////////////////////////////////////////////////////////////////////////
         } else if (cmd.equals("AC_NEXT")) {
-            System.out.println("pressing Next");
-
+      
             if (stopped == false) {
                 stopCurrentSong();
             }
@@ -215,11 +208,14 @@ public class Player extends JFrame implements ActionListener {
             af = playList.getCurrentAudioFile();
             updateSongInfo(af);
             playStopNext();
-
-            System.out.println("");
         /////////////////////////////////////////////////////////////////////////////////////////////
         } else if (cmd.equals("AC_PL_EDITOR")) {
-
+            if(editorVisible) {
+                editorVisible = false;
+            } else {
+                editorVisible =true;
+            }
+            playListEditor.setVisible(editorVisible);
         }}
 
         private class TimerThread extends Thread {
@@ -228,7 +224,7 @@ public class Player extends JFrame implements ActionListener {
                     
                     
                 while (!stopped && !playList.isEmpty()) {
-                    playTime.setText("<html>" + playList.getCurrentAudioFile().getFormattedPosition()+"</html> ");
+                    playTime.setText(playList.getCurrentAudioFile().getFormattedPosition());
                     try {
                         sleep(100);
 
