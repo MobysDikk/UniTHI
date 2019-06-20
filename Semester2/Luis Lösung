@@ -1,0 +1,128 @@
+public class Soup extends Food
+    public Soup()
+        super("Soup", 100);
+
+
+public int berechneBrewnnwert()
+return 50;
+
+----------------------------------------
+
+public class Meat extends Food
+    public Meat(String name, int gewicht)
+        super(name, gewicht);
+
+
+public int berechneBrewnnwert()
+return getGewicht()*getName().length();
+
+----------------------------------------
+
+public class Food
+private STring name;
+private int gewicht;
+    public Food(String name, int gewicht)
+    this.name = name;
+    this.gewicht = gewicht;
+
+public int brechneBrewnnwert()
+    return 0;
+
+----------------------------------------
+
+public class Dessert extends Food
+    public Dessert(String name)
+        super(name, 200);
+
+
+public int berechneBrewnnwert()
+    if(getName().contains("apfel") "oder" getName().contains("frucht")
+        return getGewicht()*2;
+    else
+        return getGewicht();
+
+-------------------------------------------
+
+public void ganzerBrennwert()
+int sum = 0;
+
+for(int i = 0; i < menue.length;i++)
+    sum += menue(i).berechneBrennwert();
+
+for(Food i:menue)
+    sum += i.berechneBrennwert();
+
+String () = ("1", "2", "3", "4")
+
+for(String temp:menue)
+Sytsem.out.println(temp);
+
+1
+2
+3
+4
+
+
+System.out.println(sum);
+
+
+
+
+"Eva" --> 2
+"Adamaa" -->3
+Berta -> 1
+Adam -> 1
+
+1 -> Berta, Adam
+2 -> Eva
+3 -> Adamaa
+
+
+
+public void printMap(Map<String, Integer> m)
+
+    Set<String> keyset = m.keySet();
+    HUgo
+    Egon
+    Eva
+...
+
+    for(int i = 0; i < keyset.size();i++)
+        String key = keyset.get(i);
+        System.out.println(key + " ==> " + m.get(key));
+
+----------------------------------
+public void printNotenStatistik(Map<String, Integer> notenliste)
+
+    Set<String> keyset = m.keySet();
+    int() i = ("0", "0", "0", "0", "0", "0");
+    i(0)
+    i(1)
+    i(2)
+    i(3)
+    i(4)
+    i(5)
+
+    for(int i = 0; i < keyset.size();i++)
+        String key = keyset.get(i);
+        i(m.get(key)) = i(m.get(key))+1;
+---------------------------------------------
+JFrame (Swing) erholungs....
+    contentPane Zimmer
+        RAdioButton Einzel
+        Radio Button Zweir
+        Radio Button    Hoersall
+    contentPane Essen
+        CheckButton Fruhstueck
+        CheckButton Mittag
+    contenPane Zahlunjgsart
+        RAdioButton bar
+        ...
+        ..
+        ..
+    Label
+    TextBox
+    Button Buchen
+    Button Abbrechen
+
+
