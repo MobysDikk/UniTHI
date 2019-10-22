@@ -40,14 +40,7 @@ public class FileComperator {
                 break;
             }
                 
-        }
-
-        /* Dieser Case wird nicht behandelt und ist somit überflüssig
-         * 
-        if ( bufferMessageA == null && bufferMessageB == null ) {
-            return true;
-        }*/
-            
+        }            
         return false;
     }
     
