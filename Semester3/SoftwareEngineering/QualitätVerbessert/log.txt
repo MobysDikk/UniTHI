@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-10-22T10:48:49</date>
+  <millis>1571734129751</millis>
+  <sequence>0</sequence>
+  <logger>FileReciver</logger>
+  <level>INFO</level>
+  <class>FileReciver</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>More or less than 2 arguments entered</message>
+</record>
+</log>
