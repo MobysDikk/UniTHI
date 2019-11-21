@@ -1,0 +1,760 @@
+/* stylesheets für www.straub.as */
+
+img.center
+{
+	display:block; 
+	margin-left:auto; 
+	margin-right:auto;
+}
+
+body, p, ul
+{
+	font-family:"Times New Roman", Times, serif;
+} 
+
+
+/* Abstand fuer Listen ul etc. */
+br.li
+{
+   margin-bottom:8px;
+}
+
+
+
+/* ------------------------ notwendig für table.big ------------------------ */
+html,body
+{
+	margin:1;
+	height: 99%;
+}
+
+
+/* 
+	die getrennten definitionen für hr nach ebenen ermöglicht eine
+	individuelle zentrale änderung der einzelnen ebenen
+*/
+
+
+/* ------------------------------ erste ebene ------------------------------ */
+/* wird verwendet für p, ul, ol, dir, pre ; setzt linken und rechten rand */
+.rand
+{
+	margin-left:5%;
+	margin-right:7%;
+}
+
+/*For cross-browser syntax, use both: <hr style="height:2px;border-width:0;color:gray;background-color:gray" />
+*/
+
+/* farbe für hr erste ebene */
+hr.rand
+{
+	height:2px;
+	border-width:0;
+	color:gray;
+	background-color:gray
+	/*
+	border-color: grey;
+	border-style:solid;
+	*/
+}
+
+
+/* listen fett */
+ul.rand
+{
+	font-weight: bold;
+}
+
+ul.rand2
+{
+	font-weight: bold;
+}
+
+ul.rand3
+{
+	font-weight: bold;
+}
+
+
+/* ------------------------------ zweite ebene ----------------------------- */
+/* wird verwendet für p, ul, ol, dir, pre ; setzt linken und rechten rand */
+.rand2
+{
+	margin-left: 9%;
+	margin-right:7%;
+}
+
+/* farbe für hr zweite ebene */
+hr.rand2
+{
+	height:2px;
+	border-width:0;
+	color:gray;
+	background-color:gray
+	/*
+	border-color: grey;
+	border-style:solid;
+	*/
+}
+
+
+/* ------------------------------ dritte ebene ----------------------------- */
+/* wird verwendet für p, ul, ol, dir, pre ; setzt linken und rechten rand */
+.rand3
+{
+	margin-left: 13%;
+	margin-right:7%;
+}
+
+/* farbe für hr dritte ebene */
+hr.rand3
+{
+	height:2px;
+	border-width:0;
+	color:gray;
+	background-color:gray
+	/*
+	border-color: grey;
+	border-style:solid;
+	*/
+}
+
+
+/* für die index-dateien */
+.rand4
+{
+	margin-left:25%;
+	margin-right:10%;
+}
+
+
+/* für die mit <hr> unterstrichene ueberschrift */
+.ueber
+{
+	color:#000000;
+	font-size:110%;
+	font-weight: bold;
+}
+
+
+/* ------------------------- ende ebenendefinition ------------------------- */
+
+
+/* pre muß eigentlich nicht generell fett sein oder ?? */
+pre
+{
+	font-weight: bold;
+	font-size: 117%;
+}
+
+
+.oper
+{
+	font-weight: bold;
+	font-size: 110%;
+}
+
+
+/* ------------------------- 1,5 zeilen abstand in Listen -------------------------
+br.li
+{
+   margin-bottom:6px;
+}
+
+ */
+
+
+
+
+
+/* =============================== tabellen ================================ */
+
+
+/* ---- globale tabelle für kurze texte und bei kurzem inhaltsverzeichnis ---- */
+table.big
+{
+	inherit: no;
+	width: 100%;  
+	height: 100%;
+	/* wird erst dann umgesetzt, wenn html und body gesetzt sind wie oben */
+	/*border: 1px solid #999999;   */
+}
+
+
+/* ------------ für die hauptliste in index.html  ------------ */
+ul.index
+{
+	type="disc";
+	margin-left: 25%
+}
+
+/* -------------- für die innere liste in der hauptliste in index.html  -------------- */
+ul.index2
+{
+	type="circle";
+}
+
+
+/*
+table
+{
+	border-width: 1px ;
+	border-color: #999999;
+	border-style:solid;
+}
+
+td, th
+{
+	padding:5px;
+	border-width: 1px ;
+	border-color: #555555;
+	border-style:solid;
+}
+*/
+
+
+/* ---------------- breite tabelle vom linken rand bis zum rechten rand ---------------- */
+/* in der regel für api-auszüge, siehe etwa basic/standard1.html */
+table.api
+{
+	width: 100%; 
+	border-width: 1px ;
+	border-color: #999999;
+	border-style:solid;
+}
+/* für den tabellenkopf, wird meist mit colspan=2 verwendet  */ 
+table.api th
+{
+	font-size:110%;
+	font-weight: bold;
+	text-align: left;
+	background-color: #eaf5ff;
+	padding:5px;
+	border-width: 1px ;
+	border-color: #555555;
+	border-style:solid;
+
+}
+table.api tr
+{
+	height: 40px;  /* minimale höhe */
+}
+table.api td
+{
+	padding:5px;
+	border-width: 1px ;
+	border-color: #555555;
+	border-style:solid;
+}
+
+tr.boldcolored
+{
+	background-color: #eaf5ff;
+	font-weight: bold;
+}
+
+/* ---------------- breite tabelle vom linken rand bis zum rechten rand ---------------- */
+/* in der regel für api-auszüge, siehe etwa basic/standard1.html */
+table.breit
+{
+	margin-left:5%;
+	width: 88%; /* margin-right:7% hat keine wirkung ! */
+	border-width: 1px ;
+	border-color: #999999;
+	border-style:solid;
+}
+
+/* für den tabellenkopf, wird meist mit colspan=2 verwendet  */ 
+table.breit th
+{
+	font-size:110%;
+	font-weight: bold;
+	text-align: left;
+	background-color: #eaf5ff;
+	padding:5px;
+	border-width: 1px ;
+	border-color: #555555;
+	border-style:solid;
+
+}
+
+table.breit tr
+{
+	height: 40px;  /* minimale höhe */
+}
+
+table.breit td
+{
+	padding:5px;
+	border-width: 1px ;
+	border-color: #555555;
+	border-style:solid;
+}
+
+
+
+
+/* ---------------- breite tabelle vom linken rand bis zum rechten rand ---------------- */
+/* in der regel für api-auszüge, siehe etwa basic/standard1.html */
+table.breit2
+{
+	margin-left: 9%;
+	width: 84%; /* margin-right:7% hat keine wirkung ! */
+	border-width: 1px ;
+	border-color: #999999;
+	border-style:solid;
+}
+
+/* für den tabellenkopf, wird meist mit colspan=2 verwendet  */ 
+table.breit2 th
+{
+	font-size:110%;
+	font-weight: bold;
+	text-align: left;
+	background-color: #eaf5ff;
+	padding:5px;
+	border-width: 1px ;
+	border-color: #555555;
+	border-style:solid;
+
+}
+
+table.breit2 tr
+{
+	height: 40px;  /* minimale höhe */
+}
+
+table.breit2 td
+{
+	padding:5px;
+	border-width: 1px ;
+	border-color: #555555;
+	border-style:solid;
+}
+
+
+
+
+
+
+/* linke spalte, meist für returntypen von methoden, fette schrift, standard1.html */
+td.links11
+{
+	width: 11%;
+	font-weight: bold;
+	/*vertical-align:text-top;*/
+}
+
+/* linke spalte, meist für konstruktornamen, fette schrift, etwa basic/standard1.html */
+td.links22
+{
+	width: 22%;
+	font-weight: bold;
+	/*vertical-align:text-top;*/
+}
+
+/* linke spalte, meist für konstruktornamen, fette schrift, etwa basic/standard1.html */
+td.links28
+{
+	width: 28%;
+	font-weight: bold;
+	/*vertical-align:text-top;*/
+}
+
+/* linke spalte, meist für konstruktornamen, fette schrift, etwa basic/standard1.html */
+td.links34
+{
+	width:34%;
+	font-weight: bold;
+}
+td.links42
+{
+	width:42%;
+	font-weight: bold;
+}
+
+
+td.bold
+{
+	font-weight: bold;
+}
+
+/*
+	bemerkung zu obiger definition:
+	
+	das konstrukt "table.breit + table.breit td" ersetzt cellpadding="5" border="1"
+	wichtig ist daß td in abhängigkeit von "rand" gesetzt wird !
+
+border-style:ridge;
+border-width:3px;
+border-color: grey;
+border-width:7px;
+border-style:double;
+border-spacing:10px;
+
+<td bgcolor="#eaf5ff" colspan="2"><font size="+1"><b>Wichtige Konstruktoren
+<td width="28%">String()
+*/
+/* end breite tabelle */
+
+
+tr.color
+{
+	background-color: #eaf5ff;
+}
+
+
+/* ---------------- standardtabelle  ---------------- */
+/* basic/progaufbau.html basic/variable.html*/
+
+table.standard
+{
+	margin-left:5%;
+	border-width: 1px ;
+	border-color: #999999;
+	border-style:solid;
+}
+
+/* für den tabellenkopf, wird meist mit colspan=2 verwendet  */ 
+table.standard th
+{
+	font-size:110%;
+	font-weight: bold;
+	text-align: left;
+	padding:5px;
+	border-width: 1px ;
+	border-color: #555555;
+	border-style:solid;
+	background-color: #eaf5ff;
+}
+
+table.standard tr
+{
+	height: 40px;  /* minimale höhe */
+}
+
+table.standard td
+{
+	padding:5px;
+	border-width: 1px ;
+	border-color: #555555;
+	border-style:solid;
+}
+
+td.standardlinks
+{
+	font-weight: bold;
+	/*vertical-align:text-top; */
+}
+
+
+/* ---------------- kleine tabelle mit nur äußerem rand ---------------- */
+/* wird etwa verwendet in basic/standard1.html */
+table.border
+{
+	margin-left:5%;
+	border-style: double; 
+	border-width: 4px;
+	border-color: #999999;	
+}
+
+table.border th
+{
+	padding:6px;
+	/*border: 1px #555555;  */
+}
+
+table.border td
+{
+	/*padding:6px;*/
+	/*border: 1px solid #555555;  */
+}
+
+
+/* ---------------- ??? tabelle ohne rand ??? ---------------- 
+table.ohne
+{
+	border: 1px solid #555555;  
+}
+
+table.klein th
+{
+	border: 0px;  
+}
+
+table.klein td
+{
+	border: 0px;  
+}
+*/
+
+
+/* ---------------- ??? wird in basic tutorial verwendet ??? ---------------- 
+table.rand4
+{
+	margin-left:5%; margin-right:7%;
+	border-color: grey;
+	border-width:7px;
+	border-style:double;
+	border-spacing:10px;
+}
+*/
+
+
+/* ---------------- ???????????? ---------------- 
+dir.index
+{
+	margin-left:20%;
+	margin-right:10%;
+}
+*/
+
+
+
+
+/* ------------------------ kopftabelle für header und footer ------------------------ */
+table.head
+{
+	width:100%;
+}
+
+tr.head
+{
+	height:45px;
+	/*height:17%;*/
+}
+
+/* da es zwei verschiedenen td's gibt, kann man sie nicht unter table.head vereinbaren */
+td.small
+{
+	background-color:#eaf5ff;
+	text-align: center;
+	vertical-align: middle;
+	width:17%;
+	font-weight: 600;
+}
+
+td.center
+{
+	background-color: #eeeeee;
+	text-align: center;
+	vertical-align: middle;
+	width: 66%;
+	font-size:153%;
+	font-weight: 600;
+}
+
+
+td.center2
+{
+	background-color: #eeeeee;
+	text-align: center;
+	vertical-align: middle;
+	width: 66%;
+	font-size:115%;
+	font-weight: 600;
+}
+
+
+td.copyright
+{
+	background-color: #eeeeee;
+	text-align: center;
+	vertical-align: middle;
+	width: 66%;
+	font-size:110%;
+	font-weight: 600;
+}
+
+
+
+/* -------- schwarze schrift für die zweite zeile siehe etwa basic/index.html -------- */
+font.center
+{
+	font-size: 75%;
+	font-weight: bold;
+}
+
+
+/* ---------------- rote schrift für den header links ---------------- */
+font.head
+{
+	color:#ff0000;
+	font-size:160%;
+}
+
+
+/* ---------------- rote schrift für den header links ---------------- */
+.bigred
+{
+	color:#ff0000;
+	font-size:160%;
+}
+
+
+/* ---------------- schwarze schrift für den header links ---------------- */
+font.head2
+{
+	color:#000000;
+	font-size:100%;
+}
+
+/* ---------------- schwarze kleine schrift für den header links ---------------- */
+.smallblack
+{
+	color:#000000;
+	font-size:100%;
+}
+
+
+/* ---------------- größe des applets ---------------- */
+applet.footer
+{
+	width:540;
+	height:45;
+}
+
+/* ------------------ für die navigationslinks im header und footer ------------------ */
+img.head
+{
+	border:0;
+	width:24;
+	height:24;
+	vertical-align: middle;
+}
+
+
+/* ------------------- zum laden eines hintergrundbildes für links ------------------- */
+/* nachteil:es wird kein alternativer text angezeigt falls das bild nicht geladen wird */
+/* wird noch nicht verwendet */
+a.prev2
+{
+	background-image: url("../img/Prev.gif");
+	text-decoration: none;
+	font-size: 22px;
+}
+
+
+div.test
+{
+  background-image:url("../img/Prev.gif");
+  background-repeat:no-repeat;
+  height:24px;
+}
+
+span.test
+{
+	display: none;
+}
+
+/* nicht verwendet
+
+A:link {text-decoration: none}
+A:visited {text-decoration: none}
+A:active {text-decoration: none}
+A:hover {text-decoration: underline overline; color: red;}
+
+.class1 A:link {text-decoration: none}
+.class1 A:visited {text-decoration: none}
+.class1 A:active {text-decoration: none}
+.class1 A:hover {text-decoration: underline; color: red;}
+
+.class2 A:link {text-decoration: underline overline}
+.class2 A:visited {text-decoration: underline overline}
+.class2 A:active {text-decoration: underline overline}
+
+.myImage { width: 100px; height: 100px; background: url('/path/to/myImage.png') no-repeat; background-position: 0 -100px; }
+.myImage:hover { background-position: 0 0; }
+
+.corp{
+background: url(’../images/link_hm_corporate_dwn.jpg’) 0 0 no-repeat;
+height:44px; width:237px;
+}
+.corp:hover{
+background: url(’../images/link_hm_corporate_up.jpg’) 0 0 no-repeat;
+}
+*/
+
+
+.up a:hover
+{
+	background: url("../img/BlackUp.gif") no-repeat;
+	text-decoration: none;
+	font-size: 19px;
+}
+
+
+a.prev
+{
+	background: url("../img/Prev.gif") no-repeat;
+	/* background-image erlaubt kein no-repeat */
+	text-decoration: none;
+	font-size: 19px;
+	/*font-size:120%;*/
+}
+
+a.next
+{
+	background: url("../img/Next.gif") no-repeat;
+	/* background erlaubt ein no-repeat */
+	text-decoration: none;
+	font-size: 19px;
+	/*font-size:120%;*/
+}
+
+a.up
+{
+	background: url("../img/Up.gif") no-repeat;
+	text-decoration: none;
+	font-size: 19px;
+	/*font-size:120%;*/
+}
+
+
+a.home
+{
+	background: url("../img/Home.gif") no-repeat;
+	text-decoration: none;
+	font-size: 19px;
+	/*font-size:120%;*/
+}
+
+
+a.top
+{
+	background-image: url("../img/BlackUp.gif") no-repeat;
+	text-decoration: none;
+	font-size: 19px;
+}
+
+
+/* - schwarze fette schrift für die mit <hr> unterstrichenen überschriften
+font.rand
+{
+	color:#000000;
+	font-size:110%;
+	font-weight: bold;
+	margin-left:0%;  /* sonst wirkt der 5% rand von .rand
+}
+*/
+
+/* - schwarze fette schrift für die mit <hr> unterstrichenen überschriften
+font.rand2
+{
+	color:#000000;
+	font-size:110%;
+	font-weight: bold;
+	margin-left:0%;  /* sonst wirkt der 5% rand von .rand
+}
+*/
+
+/* - schwarze fette schrift für die mit <hr> unterstrichenen überschriften
+font.rand3
+{
+	color:#000000;
+	font-size:110%;
+	font-weight: bold;
+	margin-left:0%;  /* sonst wirkt der 5% rand von .rand
+}
+*/

@@ -1,0 +1,483 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0051)http://www.straub.as/java/threads/synchronized.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="de"><script type="text/javascript">window["_gaUserPrefs"] = { ioo : function() { return true; } }</script><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<link rel="stylesheet" type="text/css" href="./Synchronisieren mit synchronized - http___www.straub.as__files/style.css">
+<link rel="shortcut icon" href="http://www.straub.as/img/favicon.ico">
+
+<title>Synchronisieren mit synchronized - http://www.straub.as/</title>
+</head>
+
+<body>
+<!--kopf anfang-->
+<div>
+<a name="top"></a>
+</div>
+<table class="head">
+<tbody><tr class="head">
+<td class="small">
+   <span class="bigred">A</span><span class="smallblack">dvanced&nbsp;&nbsp;&nbsp;Java&nbsp;&nbsp;</span>
+   <span class="bigred">S</span><span class="smallblack">ervices</span>
+</td>
+<td class="center">Synchronisieren mit synchronized
+</td>
+<td class="small">
+   <a href="http://www.straub.as/java/threads/threadlocal.html"><img src="./Synchronisieren mit synchronized - http___www.straub.as__files/Prev.gif" alt="" class="head"></a>
+   <a href="http://www.straub.as/java/threads/atomicinteger.html"><img src="./Synchronisieren mit synchronized - http___www.straub.as__files/Next.gif" alt="" class="head"></a>
+   <a href="http://www.straub.as/java/threads/index.html"><img src="./Synchronisieren mit synchronized - http___www.straub.as__files/Up.gif" alt="" class="head"></a>
+   <a href="http://www.straub.as/java/index.html"><img src="./Synchronisieren mit synchronized - http___www.straub.as__files/Home.gif" alt="" class="head"></a>
+</td>
+</tr>
+</tbody></table>
+<!--kopf ende-->
+
+<div class="rand">
+<br>
+<a name="comp"></a>
+<br>
+<span class="ueber">Das Schlüsselwort synchronized</span>
+<hr>
+</div>
+
+<p class="rand">
+Es gibt bekanntlich Resourcen, die exklusiv vergeben werden müssen, hierzu gehören u.a. Ausgaben auf den Drucker
+und Schreibzugriffe auf Dateien. Damit ein Thread eine Aufgabe exklusiv abarbeiten kann stellt Java das Schlüsselwort
+<b>synchronized</b> bereit. Betritt ein Thread einen Codebereich, der mit <b>synchronized</b> geschützt ist, kann er diesen
+Bereich exklusiv abarbeiten. Kein anderer Thread kann dann diesen Bereich betreten. Dazu hat jedes Javaobjekt einen
+Monitor. Diese Überwachungsinstanz enthält pro Objekt <b>genau einen</b> Lock. Will ein Thread einen mit <b>synchronized</b>
+geschützten Bereich betreten, so muß er vom zugehörigen Objekt einen Lock anfordern. Ist dieser bereits vergeben, so
+muß er warten. Da es nur einen Lock gibt sperrt ein Thread, der diesen Lock besitzt zwangsläufig alle anderen mit
+<b>synchronized</b> geschützten Bereiche dieses Objekts. Es werden damit evtl. auch Bereiche gesperrt, die mit der
+von dem Thread gerade abgearbeiteten Code garnichts zu tun haben. Performanceverluste sind die logische Folge dieses
+sozusagen rabiaten Verhaltens.
+</p>
+
+
+<div class="rand">
+<a name="comp"></a>
+<br>
+<span class="ueber">Der Einsatz von synchronized</span>
+<hr>
+</div>
+
+<p class="rand">
+Mit <b>synchronized</b> kann man einen bestimmten Codebereich schützen oder auch eine ganze Methode. Im ersten Fall
+spricht man von einem synchronized-Block.
+</p>
+
+
+<div class="rand2">
+<a name="comp"></a>
+<br>
+<span class="ueber">Der synchronized Block</span>
+<hr>
+</div>
+
+
+<pre class="rand2">synchronized(einObjekt)
+{
+   // statements
+}
+</pre>
+
+<p class="rand2">
+Dieser Bereich wird nun durch das angegebene Objekt geschützt. Sehr oft ist dieses Objekt this, da man den Codebereich
+des eigenen Objekts schützen will.
+</p>
+
+
+<div class="rand2">
+<a name="comp"></a>
+<br>
+<span class="ueber">Die synchronized Methode</span>
+<hr>
+</div>
+
+<pre class="rand2">public synchronized void method()
+{
+   // statements
+}
+</pre>
+
+<p class="rand2">
+Hier wird die gesamte Methode exklusiv vergeben. Natürlich ist jeder beliebige Returntyp möglich und auch andere
+Schutzzustände. Die obige Schreibweise ist lediglich eine Abkürzung für die folgende:
+</p>
+
+<pre class="rand2">public void method()
+{
+   synchronized(this)
+   {
+      // statements
+   }
+}
+</pre>
+
+
+<div class="rand">
+<a name="comp"></a>
+<br>
+<span class="ueber">Statische synchronized Blöcke und statische synchronized Methoden</span>
+<hr>
+</div>
+
+<p class="rand">
+Auch auf der Ebene static kann man mit synchronized arbeiten. Da ein
+synchronized Block ein Objekt benötigt nimmt man in diesem Fall das der Klasse zugeordnete class-Objekt.
+</p>
+
+
+<div class="rand2">
+<a name="comp"></a>
+<br>
+<span class="ueber">Der statische synchronized Block</span>
+<hr>
+</div>
+
+<pre class="rand2">synchronized(MyKlassenName.class)
+{
+   // statements
+}
+</pre>
+
+<p class="rand2">
+Dieser Bereich wird nun durch das angegebene class-Objekt geschützt.
+</p>
+
+
+<div class="rand2">
+<a name="comp"></a>
+<br>
+<span class="ueber">Die statische synchronized Methode</span>
+<hr>
+</div>
+
+<pre class="rand2">public static synchronized void method()
+{
+   // statements
+}
+</pre>
+
+<p class="rand2">
+Wie zu erwarten ist obige Schreibweise äquivalent zu der folgenden.
+</p>
+
+<pre class="rand2">public static void method()
+{
+   synchronized(MyKlassenName.class)
+   {
+      // statements
+   }
+}
+</pre>
+
+<p class="rand2">
+Der Name der Klasse ist natürlich der in dem die Methode angesiedelt ist.
+</p>
+
+
+
+<div class="rand">
+<a name="comp"></a>
+<br>
+<span class="ueber">Ein Beispiel</span>
+<hr>
+</div>
+
+
+<p class="rand">
+Das folgende Beispiel zeigt eine statische Methode, die sowohl einen geschützten Bereich wie auch einen
+ungeschützten Bereich enthält. Beide Bereiche geben 10 Zeichen auf die Konsole aus. Dazu gibt es eine
+Threadklasse, die mit dieser Methode arbeitet. Den Threadobjekten kann übergeben werden welche Strings
+sie in welchem Bereich ausgeben sollen. Damit die beiden Bereiche nicht zu schnell ablaufen werden sie
+durch sleep gebremst. Der erste Thread gibt im ungeschützten Bereich "1" und im geschützten Bereich "A" aus,
+der zweite Thread im ungeschützten Bereich "2" und im geschützten Bereich "B" aus.
+</p>
+
+<p class="rand">
+Die Hauptklasse mit der statischen Methode print
+</p>
+
+<pre class="rand">public class SynchronizedDemo
+{
+   public static void main(String[] args)
+   {
+      Thread th1 = new AusgabeThread("1","A");
+      Thread th2 = new AusgabeThread("2","B");
+      th1.start();
+      th2.start();
+
+   }
+
+   public static void print(String s1, String s2)
+   {
+      for(int i = 0; i &lt; 10; i++)
+      {
+         System.out.print(s1);
+         try
+         {
+            Thread.sleep(200);
+         }
+         catch(InterruptedException ex)
+         {
+         }
+      }
+
+      synchronized(SynchronizedDemo.class)
+      {
+         for(int i = 0; i &lt; 10; i++)
+         {
+            System.out.print(s2);
+            try
+            {
+               Thread.sleep(200);
+            }
+            catch(InterruptedException ex)
+            {
+            }
+         }
+      }
+   }
+}
+</pre>
+
+
+<p class="rand">
+Die Threadklasse
+</p>
+
+<pre class="rand">public class AusgabeThread extends Thread
+{
+   private String s1;
+   private String s2;
+
+   public AusgabeThread(String s1, String s2)
+   {
+      this.s1 = s1;
+      this.s2 = s2;
+   }
+
+   public void run()
+   {
+      SynchronizedDemo.print(s1,s2);
+   }
+}
+</pre>
+
+
+<p class="rand">
+Die Ausgabe ist nicht vollkommen determiniert. Die A's und die B's werden in Blöcken am Ende auftreten, alles andere kann man
+nicht vorhersagen.Hier zwei Durchläufe des Programms.
+</p>
+
+<pre class="rand">12212121212121122112BBBBBBBBBBAAAAAAAAAA
+</pre>
+
+<pre class="rand">12121212212112121212AAAAAAAAAABBBBBBBBBB
+</pre>
+
+<p class="rand">
+Hier erhebt sich natürlich die Frage: <b>Was passiert mit dem Lock während der Thread schläft?</b>. Da es die sleep()-Phasen auch im
+synchronisierten Bereich gibt wird der Lock nicht zurückgegeben. Sonst würde ja der zweite Thread darauf zugreifen und die Ausgaben
+würden sich mischen. Die folgenden Tabelle klärt das für alle threadrelevanten Methoden.
+</p>
+
+
+<div class="rand">
+<a name="comment"></a>
+<br>
+<span class="ueber">Das Verhalten von join(), notify(), sleep(), wait() und yield() in Bezug auf Locks</span>
+<hr>
+</div>
+
+<p class="rand">
+Es ist wichtig zu wissen, welche Methoden beim Aufruf einen Lock zurückgeben oder nicht.
+</p>
+
+
+<!-- <table class="breit"> -->
+<table class="rand" border="2" cellpadding="7">
+<tbody><tr>
+<td style="background:#eaf5ff; font-weight:bold; font-size:110%" colspan="3">Lockverhalten der threadrelevanten Methoden</td>
+</tr>
+<tr style="background:#eaf5ff">
+<td class="links11"><b>Methode</b></td><td class="links11"><b>Klasse</b></td><td><b>Lockverhalten</b></td>
+</tr>
+<tr>
+<td><b>join()</b></td> <td>Thread</td> <td><b>Behält den Lock</b></td>
+</tr>
+<tr>
+<td><b>notify()</b></td> <td>Object</td> <td><b>Behält den Lock</b></td>
+</tr>
+<tr>
+<td><b>sleep()</b></td> <td>Thread</td> <td><b>Behält den Lock</b></td>
+</tr>
+<tr>
+<td><b>wait()</b></td> <td>Object</td><td><b>Gibt den Lock zurück</b></td>
+</tr>
+<tr><td><b>yield()</b></td> <td>Thread</td><td><b>Behält den Lock</b></td>
+</tr>
+</tbody></table>
+
+<p class="rand">
+<b>Merkregel: Nur wait() gibt den Lock zurück.</b>
+</p>
+
+
+<div class="rand">
+<a name="comp"></a>
+<br>
+<span class="ueber">Mit synchronized vergeben Locks sind reentrant (wiedereintritssfähig)</span>
+<hr>
+</div>
+
+<p class="rand">
+Was passiert, wenn ein Thread im Besitz eines Locks ist und einen weiteren Bereich betreten will, der mit demselben
+Lock geschützt ist. Er wird einen Lock anfordern, aber er kann ja keinen mehr bekommen. Kann sich der Monitor
+merken, an wen er den Lock gegeben hat. Kann er sagen, du hast ja den Lock schon, verwende ihn.
+Wir betrachten die folgende Situation.
+</p>
+
+<pre class="rand">public class SynchronizeIsReentrant
+{
+  public synchronized first()
+  {
+    //do something
+    second();
+    //do something
+    second();
+    //do something
+  }
+
+  public synchronized second()
+  {
+    //do something
+  }
+}
+</pre>
+
+<p class="rand">
+Beim Eintritt in die Methode second() fordert der ausführende Thread erneut einen Lock vom Monitor. Nun gibt es zwei
+Möglichkeiten wie der Monitor reagieren kann. Dazu stellen wir uns den Monitor mal als sprechendes Wesen vor.
+</p>
+
+<p class="rand">
+Erste Möglichkeit:
+</p>
+
+<pre class="rand2">Monitor sagt: Ich habe keinen Lock mehr (basta).
+</pre>
+
+<p class="rand">
+Zweite Möglichkeit:
+</p>
+
+<pre class="rand2">Monitor sagt: Du hast doch schon den Lock, er gilt auch für die neue Situation.
+</pre>
+
+<p class="rand">
+In der ersten Situation spricht man von einem <b>nichtreentranten</b> Lock, die zweite Situation nennt man wie zu
+erwarten <b>reentrant</b>. Ein reentranter Lock ist so etwas wie ein Generalschlüssel, er sperrt überall.
+Wäre synchronized nicht reentrant implementiert, so käme es hier zu einem Deadlock da ja der Monitor nur einen Lock
+hat.
+</p>
+
+
+<!--
+The same thread can call a synchronized method on an object for which it already holds the lock, thereby reacquiring the lock.
+The Java runtime environment allows a thread to reacquire a lock because the locks are reentrant.
+Reentrant locks are important because they eliminate the possibility of a single thread having to wait for a lock that it already holds.
+-->
+
+
+
+
+
+
+
+
+<pre class="rand2"></pre>
+
+
+
+<!--
+
+<table class="breit">
+<tr>
+   <th style="background:#eaf5ff" colspan="2">Wichtige Methoden</th>
+</tr>
+<tr style="background:#eaf5ff">
+   <td><b>Returntyp</b></td><td><b>Name der Methode</b></td>
+</tr>
+<tr>
+<td><b>void</b></td><td><b>run()</b><br/>
+When an object implementing interface Runnable is used to create a thread, starting the thread
+causes the object's run method to be called in that separately executing thread.</td>
+</tr>
+
+
+
+<table class="rand2" border="2" cellpadding="7">
+<tr style="background:#eaf5ff">
+<th>Escape-Sequenz</th><th>Bedeutung</th>
+</tr>
+
+<tr>
+<th>\b</th><td>backspace</td>
+</tr>
+
+<tr>
+<th>\n</th><td>newline</td>
+</tr>
+</table>
+
+<div class="rand">
+<a name="keinAnkername"></a>
+<br/>
+<span class="ueber">Ueberschrift</span>
+<hr/>
+</div>
+-->
+
+
+
+<!--
+<div class="rand">
+<a name="ueb"></a>
+<br/>
+<span class="ueber">&Uuml;bungen</span>
+<hr/>
+</div>
+
+<p class="rand">
+<a href="Uausgabe.html">Uebung1</a>
+<br/><br/>
+<a href="Uausgabe2.html">Uebung2</a>
+<br/><br/>
+</p>
+-->
+
+<p>
+
+<!--tail anfang-->
+</p><table class="head">
+<tbody><tr class="head">
+<td class="small">
+    <a href="http://validator.w3.org/check/?uri=referer">
+    <img src="./Synchronisieren mit synchronized - http___www.straub.as__files/saved_resource" alt="" height="31" width="88" style="border:0"></a>
+</td>
+<td class="center"></td>
+<td class="small">
+   <a href="http://www.straub.as/java/threads/synchronized.html#top"><img src="./Synchronisieren mit synchronized - http___www.straub.as__files/BlackUp.gif" alt="" class="head"></a>
+   <a href="http://www.straub.as/java/threads/threadlocal.html"><img src="./Synchronisieren mit synchronized - http___www.straub.as__files/Prev.gif" alt="" class="head"></a>
+   <a href="http://www.straub.as/java/threads/atomicinteger.html"><img src="./Synchronisieren mit synchronized - http___www.straub.as__files/Next.gif" alt="" class="head"></a>
+   <a href="http://www.straub.as/java/threads/index.html"><img src="./Synchronisieren mit synchronized - http___www.straub.as__files/Up.gif" alt="" class="head"></a>
+   <a href="http://www.straub.as/java/index.html"><img src="./Synchronisieren mit synchronized - http___www.straub.as__files/Home.gif" alt="" class="head"></a>
+</td>
+</tr>
+</tbody></table>
+<!--tail ende-->
+
+
+
+
+</body></html>

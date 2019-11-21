@@ -19,8 +19,6 @@ public class FileComperator {
 
     private File fileA;
     private File fileB;
-    private BufferedReader readerA;
-    private BufferedReader readerB;
     private String bufferMessageA = null;
     private String bufferMessageB = null;
 
@@ -31,16 +29,34 @@ public class FileComperator {
 
     public boolean compare() throws IOException{
 
-        readerA = new BufferedReader( new FileReader( fileA ) );
-        readerB = new BufferedReader( new FileReader( fileB ) );
-        
-        while ( true ) {
-            if ( ( bufferMessageA = readerA.readLine() ) == null || ( bufferMessageB = readerB.readLine() ) == null
-            || bufferMessageA.compareTo( bufferMessageB ) != 0 ) {
-                break;
-            }
+        BufferedReader readerA = null;
+        BufferedReader readerB = null;
+
+        try {
+
+            readerA = new BufferedReader( new FileReader( fileA ) );
+            readerB = new BufferedReader( new FileReader( fileB ) );
+            bufferMessageA = readerA.readLine();
+            bufferMessageB = readerB.readLine();
+            
+            while ( true ) {
                 
-        }            
+                if ( bufferMessageA == null || bufferMessageB == null || bufferMessageA.compareTo( bufferMessageB ) != 0 ) {
+                    break;
+                }
+    
+                bufferMessageA = readerA.readLine();
+                bufferMessageB = readerB.readLine();
+            } 
+        
+        } catch (IOException e) {
+            e.fillInStackTrace();
+        }
+        finally {
+            readerA.close();
+            readerB.close();
+        }
+        
         return false;
     }
     

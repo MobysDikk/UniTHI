@@ -2,8 +2,8 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2019-10-22T19:29:11</date>
-  <millis>1571765351873</millis>
+  <date>2019-10-24T13:17:25</date>
+  <millis>1571915845454</millis>
   <sequence>0</sequence>
   <logger>FileReciver</logger>
   <level>INFO</level>
