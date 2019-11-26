@@ -138,7 +138,7 @@ main(){
 
   int process;		
 
-  if ((sem_key = ftok ("/home/facchi",'2'))<0){
+  if ((sem_key = ftok ("/tmp",'2'))<0){
     perror("Error in ftok");
     exit(1);
   }

@@ -43,7 +43,7 @@ void V(int sem_id) {
 void read(int mutex, int reader, int writer, int pid) {
 
   for(int i =0;i<3;i++){
-  P(mutex);                  // mutex semaphore um reader counter zu erhöhen
+  P(mutex);                  // mutex semaphore um reader counter "nur um eins" zu erhöhen
   V(reader);                 // reader Semaphore/counter wird 1++
     if(getVal(reader) == 1){ // falls ein leser da ist blockier schreiber
       P(writer);
@@ -54,7 +54,6 @@ void read(int mutex, int reader, int writer, int pid) {
   printf(" READER %d starts reading.\n", pid);
   sleep(1);
   printf(" READER %d stops reading.\n", pid);
-  // printf("reader = %d\n", getVal(reader));
 
   P(mutex);
   P(reader);
