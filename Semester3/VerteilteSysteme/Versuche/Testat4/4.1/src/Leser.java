@@ -8,11 +8,16 @@ public class Leser extends Thread{
     }
     
     public void run () {
+        
+
         while(true) {
-        f.getPosition();
+            
+                f.getPosition();
+                MachMAl.eineLängereZeitNichts();
+       
       }
-    }
     
+    }
     
 
 }

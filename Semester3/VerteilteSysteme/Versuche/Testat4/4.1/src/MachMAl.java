@@ -3,7 +3,7 @@ public class MachMAl {
     
     public static void eineZeitLangGarnichts() {
         try {
-            Thread.sleep(200);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -15,7 +15,7 @@ public class MachMAl {
     
     public static void eineLängereZeitNichts() {
         try {
-            Thread.sleep(500);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
