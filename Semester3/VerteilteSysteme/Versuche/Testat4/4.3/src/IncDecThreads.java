@@ -1,13 +1,11 @@
 
 public class IncDecThreads  {
-    private static int toggle = 0;
+    
     
     public static void main (String[] args) {
-    
-    
-    
-    Inc inc = new Inc();
-    Dec dec = new Dec();
+    Int zahl = new Int(0);
+    Inc inc = new Inc(zahl);
+    Dec dec = new Dec(zahl);
   
     inc.start();
     dec.start();
@@ -16,11 +14,4 @@ public class IncDecThreads  {
 
 }
 
-    public static int getToggle() {
-        return toggle;
-    }
-
-    public static void setToggle(int toggle) {
-        IncDecThreads.toggle = toggle;
-    }
 }
