@@ -8,10 +8,16 @@ public class Int {
     }
     
     public int getInt() {
-        return number;
+        
+            return number;
+        
+        
     }
     public void setInt(int x) {
-        this.number = x;
+         
+            this.number = x;
+        
+        
     }
 
 }
