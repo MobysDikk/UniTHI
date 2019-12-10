@@ -1,11 +1,13 @@
 #!/bin/bash
 
-set lars/UniTHI/Semester3/VerteilteSysteme/Versuche/testat5 = bin 
+rmiregistry &
 
-rmiregistry
+sleep 2
 
-java -cp bin DaytimeServer
+java DaytimeServer &
 
-java -Djava.security.manager -Djava-security.policy=policy.txt -cp bin DaytimeClient localhost Hallo
+sleep 2
+
+java DaytimeClient localhost Boomerang
 
 
