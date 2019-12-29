@@ -9,3 +9,6 @@ public class DaytimeServer {
         System.out.println("Daytime Server startet");
     }
 }
+
+
+//Der Server registriert ein Remote Object bei der RMI-Registry unter einem eindeutigen Namen.

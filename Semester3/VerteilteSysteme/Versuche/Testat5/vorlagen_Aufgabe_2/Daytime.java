@@ -7,4 +7,5 @@ public interface Daytime extends Remote{
 
 }
  //Schnittstelle in der mittels dem interface erlaubt wird
-// auf entfernte Methoden zuzugreifen
+// auf entfernte Methoden zuzugreifen. Der Client sieht bei der RMI-Registry unter 
+//diesem Namen nach und bekommt eine Objektreferenz, die seinem Remote Interface entsprechen muss.
