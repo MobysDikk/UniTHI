@@ -60,6 +60,10 @@ class Huepfer {
 	 */
 	int transformX(double x) {
 		// TODO Hier Code einfuegen ...
+	    
+	    
+	    
+	    return 4;
 	}
 
 	/**
