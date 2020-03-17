@@ -1,7 +1,15 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Random;
 
 class Huepfer {
+    
+    /** Color*/
+    int c1;
+    int c2;
+    int c3;
+    int cCounter=0;
+    
 
 	/** Zum Zeichnen in Panel */
 	Graphics graphics;
@@ -17,6 +25,7 @@ class Huepfer {
 
 	/** Anzahl Punkte */
 	int num;
+	
 
 	public Huepfer(Graphics graphics,
 			int width, int height,
@@ -50,7 +59,20 @@ class Huepfer {
 	 */
 	void setPixel(int x, int y) {
 		graphics.drawLine(x, y, x, y);
-	}
+		
+		if(cCounter%100==0) {
+		    Random rand = new Random();
+		    c1 = rand.nextInt(255);
+		    c2 = rand.nextInt(255);
+		    c3 = rand.nextInt(255);
+		    graphics.setColor(new Color(c1+1,c2+1,c3+1));
+		    
+		    
+		}
+		
+		    
+		}
+		    
 
 	/**
 	 * Wandle LKOS-Koordinate in GKOS-Koordinate um.
@@ -59,11 +81,8 @@ class Huepfer {
 	 * @return GKOS-Koordinate
 	 */
 	int transformX(double x) {
-		// TODO Hier Code einfuegen ...
-	    
-	    
-	    
-	    return 4;
+		
+	    return (int) ((width/(xMax-xMin))*(x-xMin)+0.5);
 	}
 
 	/**
@@ -73,10 +92,24 @@ class Huepfer {
 	 * @return GKOS-Koordinate
 	 */
 	int transformY(double y) {
-		// TODO Hier Code einfuegen ...
+		
+	    return (int) ((height/(yMin-yMax))*(y-yMax)+0.5);
 	}
 
 	public void render() {
-		// TODO Ihre Implementierung des Hüpfer-Algorithmus ...
+		
+	    double x = 0;
+	    double y = 0;
+	    for (int i = 0; i <num ; i++) {
+	        setPixel(transformX(x),transformY(y));
+	        double xx = y- Math.signum(x)*(Math.sqrt(Math.abs((this.b*x)-this.c))); 
+	        double yy = a - x;
+	        x = xx;
+	        y = yy;
+	        cCounter++;
+	        
+	    }
+	    
+	    
 	}
 }

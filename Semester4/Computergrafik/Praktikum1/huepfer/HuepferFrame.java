@@ -28,14 +28,14 @@ class HuepferFrame extends JPanel {
 		Huepfer h = new Huepfer(graphics, //
 				width, //
 				height, //
-				-4.0, // xMin
-				5.0, // xMax
-				-4.0, // yMin
-				5.0, // yMax
-				0.4, // a
-				1.0, // b
-				0.0, // c
-				1_000_000 // num
+				-14.0, // xMin
+                12.0, // xMax
+                -15.0, // yMin
+                11.0, // yMax
+                3.14, // a
+                0.3, // b
+                0.3, // c
+                100_000_0 // num
 		);
 		h.render();
 	}

@@ -49,7 +49,7 @@ public class HuepferTest {
 		);
 		h.render();
 		
-		assertEquals("", expected, g.toString());
+		assertEquals("passt nicht", expected, g.toString());
 	}
 
 }
