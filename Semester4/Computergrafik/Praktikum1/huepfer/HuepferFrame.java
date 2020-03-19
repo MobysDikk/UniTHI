@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 class HuepferFrame extends JPanel {
 
 	/** initiale Dimension des Zeichen-Panels (GKOS) */
-	private int width = 500;
-	private int height = 500;
+	private int width = 1200;
+	private int height = 1000;
 
 	/** Konstruktor für das Zeichen-Panel */
 	public HuepferFrame() {
@@ -28,10 +28,10 @@ class HuepferFrame extends JPanel {
 		Huepfer h = new Huepfer(graphics, //
 				width, //
 				height, //
-				-14.0, // xMin
-                12.0, // xMax
-                -15.0, // yMin
-                11.0, // yMax
+				-50.0, // xMin
+                50.0, // xMax
+                -50.0, // yMin
+                50.0, // yMax
                 3.14, // a
                 0.3, // b
                 0.3, // c
