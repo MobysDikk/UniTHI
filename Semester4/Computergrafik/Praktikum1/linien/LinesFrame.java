@@ -44,23 +44,23 @@ class LinesFrame extends JPanel {
 
 //		// Überdeckungstests
 //		
-//		// Überdeckung Geradengleichung - DDA
-//		g.setColor(Color.red);
-//		lineDrawer.drawLineEquation(200, 100, 300, 200);
-//		lineDrawer.drawLineEquation(200, 100, 300, 150);
-//
-//		g.setColor(Color.green);
-//		lineDrawer.drawDda(200, 100, 300, 200);
-//		lineDrawer.drawDda(200, 100, 300, 150);
-//	
-//		// Überdeckung Geradengleichung - Bresenham
-//		g.setColor(Color.red);
-//		lineDrawer.drawLineEquation(300, 100, 400, 200);
-//		lineDrawer.drawLineEquation(300, 100, 400, 150);
-//
-//		g.setColor(Color.blue);
-//		lineDrawer.drawBresenham(300, 100, 400, 200);
-//		lineDrawer.drawBresenham(300, 100, 400, 150);
+		// Überdeckung Geradengleichung - DDA
+		g.setColor(Color.red);
+		lineDrawer.drawLineEquation(200, 100, 300, 200);
+		lineDrawer.drawLineEquation(200, 100, 300, 150);
+
+		g.setColor(Color.green);
+		lineDrawer.drawDda(200, 100, 300, 200);
+		lineDrawer.drawDda(200, 100, 300, 150);
+	
+		// Überdeckung Geradengleichung - Bresenham
+		g.setColor(Color.red);
+		lineDrawer.drawLineEquation(300, 100, 400, 200);
+		lineDrawer.drawLineEquation(300, 100, 400, 150);
+
+		g.setColor(Color.blue);
+		lineDrawer.drawBresenham(300, 100, 400, 200);
+		lineDrawer.drawBresenham(300, 100, 400, 150);
 	}
 
 	public static void main(String[] args) {

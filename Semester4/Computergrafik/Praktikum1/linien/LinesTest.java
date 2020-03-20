@@ -38,6 +38,7 @@ public class LinesTest {
 		for (int ep : endPoints) {
 			lineDrawer.drawLineEquation(0, 0, 19, ep);
 		}
+		
 		assertEquals("Zeichnen mit Geradengleichung", expected, bufferedGraphics.toString());
 	}
 
