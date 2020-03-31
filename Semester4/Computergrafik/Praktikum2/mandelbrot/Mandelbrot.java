@@ -70,7 +70,7 @@ public class Mandelbrot {
 	 * @return LKOS-Koordinate
 	 */
 	double transformPx(int px) {
-		// TODO: Hier Code einfuegen ...
+		return ((px * (xMax - xMin)) / (width)) + xMin;
 	}
 
 	/**
@@ -80,7 +80,14 @@ public class Mandelbrot {
 	 * @return LKOS-Koordinate
 	 */
 	double transformPy(int py) {
-		// TODO: Hier Code einfuegen ...
+		return ((py * (yMin - yMax)) / (height)) + yMax;
+	}
+
+	/**
+	 * Multiplizieren von zwei komplexen Zahlen
+	 */
+	public double komplexMultiplier(double r, double i) {
+		return (r * r) + (i * i);
 	}
 
 	/**
@@ -95,9 +102,36 @@ public class Mandelbrot {
 				// TODO 1: Hier aus px und py Real- und Imaginärteil einer komplexen Zahl c
 				// ausrechnen.
 				// Real- und Imaginärteil von z initialisieren (s. Angabe).
-				// TODO 2: Hier Schleife einfügen, die solange ausgeführt wird, wie |z|*|z| < 4 und
+
+				double realC = transformPx(px);
+				double imaC = transformPy(py);
+
+				double realZ = 0;
+				double imaZ = 0;
+				double zMalZ = komplexMultiplier(realZ, imaZ);
+
+				// TODO 2: Hier Schleife einfügen, die solange ausgeführt wird, wie |z|*|z| <
+				// 4 und
 				// Maximalzahl Iterationen noch nicht überschritten. Im Schleifenrumpf soll die
 				// komplexe Zahl z nach der Formel z = z*z + c aktualisiert werden.
+
+				while (iter < maxiter && zMalZ < 4) {
+					
+					// es gilt f(z) = z^2 +c
+					// z0 ist daher = c
+					// n�chste Generation w�re daher c^2+c
+					// daraus folgt: (realZ+imaZ)*(realZ+imaZ)...
+					// siehe zur Erinnerung https://www.youtube.com/watch?v=6z7GQewK-Ks
+					
+					double temp = realZ * realZ - imaZ * imaZ + realC;
+					imaZ = 2 * realZ * imaZ + imaC;
+					realZ = temp;
+					
+					iter++;
+					zMalZ = komplexMultiplier(realZ, imaZ);
+
+				}
+
 				graphics.setColor(colorScheme.colorForNumIterations(iter));
 				setPixel(graphics, px, py);
 			}
